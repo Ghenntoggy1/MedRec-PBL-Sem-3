@@ -1,11 +1,14 @@
-import React from "react";
-import { Box, Text, Grid, GridItem, Button, Center, Flex, Image, Container, Stack } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Box, Text, Grid, GridItem, Button, Center, Flex, Image, Link } from "@chakra-ui/react";
 
 function StartPage() {
+  const [isPacientHovered, setIsPacientHovered] = useState(false);
+  const [isMedicHovered, setIsMedicHovered] = useState(false);
+
   return (
     <div>
       <Box maxW="box.xl" marginLeft="50">
-        <Text fontSize="5xl" fontWeight="extrabold" color="green">
+        <Text fontSize="5xl" fontWeight="extrabold" bgClip='text' bgGradient='linear-gradient(to-l, #4CBCAC, #05C676)'>
           MedRec: Fișe Medicale Digitalizate
         </Text>
       </Box>
@@ -13,25 +16,56 @@ function StartPage() {
         <Grid templateColumns="1fr 1fr 1fr" gap={50} justifySelf="center">
           <Flex justify="center" align="center" h="100%">
             <GridItem colSpan={1} textAlign="right" justifyContent="center">
-              <Text fontSize="4xl" bgGradient='linear(to-l, #4CBCAC, #05C47C)' bgClip='text' fontWeight='extrabold'>Alegeţi tipul de logare</Text>
+              <Text fontSize="4xl" bgGradient='linear(to-l, #4CBCAC, #05C676)' bgClip='text' fontWeight='extrabold'>Alegeţi tipul de logare</Text>
             </GridItem>
           </Flex>
           <GridItem colSpan={1}>
             <Center>
-              <Button marginBottom="20px" variant='ghost' _hover={{bg : "white"}}>
+              <Button 
+              marginBottom="20px" 
+              variant='ghost'
+              height='210px'
+              border="3px solid transparent"
+              onMouseEnter={() => setIsPacientHovered(true)}
+              onMouseLeave={() => setIsPacientHovered(false)}
+              _hover={{
+                border: '3px solid',
+                borderColor: 'linear(to-l, #4CBCAC, #05C676)',
+                backgroundImage: 'linear-gradient(to-l, #4CBCAC, #05C676)',
+              }}
+              _active={{
+                transform: 'scale(0.95)',
+                borderColor: 'linear-gradient(to-l, #4CBCAC, #05C676)',
+              }}>
                 <Flex flexDirection="column" h="197px">
                   <Image
-                    src="/images/pacient_icon.png"
+                    src={isPacientHovered ? "/images/pacient_icon_white.png" : "/images/pacient_icon.png"}
                   />
-                  <Text fontSize="2xl" fontWeight="normal">Pacient</Text>
+                  <Text fontSize="2xl" fontWeight="bold" bgClip='text' bgGradient={isPacientHovered ? 'linear(to-l, #FFFFFF, #FFFFFF)' : 'linear(to-l, #4CBCAC, #05C47C)'} >Pacient</Text>
                 </Flex>
               </Button>
-              <Button marginBottom="20px" marginLeft='50px' variant='ghost' _hover={{bg : "white"}}>
+              <Button 
+              marginLeft='50px'
+              marginBottom="20px" 
+              variant='ghost'
+              height='210px'
+              border="3px solid transparent"
+              onMouseEnter={() => setIsMedicHovered(true)}
+              onMouseLeave={() => setIsMedicHovered(false)}
+              _hover={{
+                border: '3px solid',
+                borderColor: 'linear(to-l, #4CBCAC, #05C676)',
+                backgroundImage: 'linear-gradient(to-l, #4CBCAC, #05C676)',
+              }}
+              _active={{
+                transform: 'scale(0.95)',
+                borderColor: 'linear-gradient(to-l, #4CBCAC, #05C676)',
+              }}>
                 <Flex flexDirection="column" h="197px">
                   <Image
-                    src="/images/medic_icon.png"
+                    src={isMedicHovered ? "/images/medic_icon_white.png" : "/images/medic_icon.png"}
                   />
-                  <Text fontSize="2xl" fontWeight="normal">Medic</Text>
+                  <Text fontSize="2xl" fontWeight="bold" bgGradient={isMedicHovered ? 'linear(to-l, #FFFFFF, #FFFFFF)' : 'linear(to-l, #4CBCAC, #05C676)'} bgClip='text'>Medic</Text>
                 </Flex>
               </Button>
             </Center>
@@ -39,8 +73,10 @@ function StartPage() {
         </Grid>
       </Center>
       <Box marginLeft="50px" marginTop='40px'>
-        <Text fontSize="" fontWeight="bold" color="green">
-          Ministerul Sănătăţii al Republicii Moldova
+        <Text fontSize="" fontWeight="bold" color="#05C676">
+          <Link href="https://ms.gov.md/" isExternal>
+            Ministerul Sănătăţii al Republicii Moldova
+          </Link>
         </Text>
       </Box>
     </div>
