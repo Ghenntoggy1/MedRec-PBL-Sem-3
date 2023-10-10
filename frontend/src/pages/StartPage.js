@@ -5,6 +5,7 @@ import { Box, Text, Grid, GridItem, Button, Center, Flex, Image, Link as ChakraL
 function StartPage() {
   const [isPacientHovered, setIsPacientHovered] = useState(false);
   const [isMedicHovered, setIsMedicHovered] = useState(false);
+  const [userType, setUserType] = useState('');
 
   return (
     <div>
@@ -34,11 +35,15 @@ function StartPage() {
                 borderColor: 'linear(to-l, #4CBCAC, #05C676)',
                 backgroundImage: 'linear-gradient(to-l, #4CBCAC, #05C676)',
               }}
+              onClick={() => {
+                setUserType('pacient');
+              }}
               _active={{
                 transform: 'scale(0.95)',
                 borderColor: 'linear-gradient(to-l, #4CBCAC, #05C676)',
               }}>
-                <ChakraLink as={ReactRouterLink} to='/login'>
+              
+                <ChakraLink as={ReactRouterLink} to={`/login/${'pacient'}`} style={{ textDecoration: 'none' }}> {/* TODO repair userType */}
                   <Flex flexDirection="column" h="197px">
                     <Image
                       src={isPacientHovered ? "/images/pacient_icon_white.png" : "/images/pacient_icon.png"}
@@ -64,8 +69,10 @@ function StartPage() {
                 transform: 'scale(0.95)',
                 borderColor: 'linear-gradient(to-l, #4CBCAC, #05C676)',
               }}
-              >
-                <ChakraLink as={ReactRouterLink} to='/login'>
+              onClick={() => {
+                setUserType('medic');
+              }}>
+                <ChakraLink as={ReactRouterLink} to={`/login/${'medic'}`} style={{ textDecoration: 'none' }}>  {/* TODO repair userType */}
                   <Flex flexDirection="column" h="197px">
                     <Image
                       src={isMedicHovered ? "/images/medic_icon_white.png" : "/images/medic_icon.png"}
@@ -80,7 +87,7 @@ function StartPage() {
       </Center>
       <Box marginLeft="50px" marginTop='40px'>
         <Text fontSize="" fontWeight="bold" color="#05C676">
-          <ChakraLink href="https://ms.gov.md/" isExternal>
+          <ChakraLink href="https://ms.gov.md/" isExternal style={{ textDecoration: 'none' }}>
             Ministerul Sănătăţii al Republicii Moldova
           </ChakraLink>
         </Text>

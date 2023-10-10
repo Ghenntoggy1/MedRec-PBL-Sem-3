@@ -11,7 +11,7 @@ export default function App() {
         <BrowserRouter>
             <Routes>
                 <Route index element={<StartPage />} />
-                <Route path='/login' element={<LoginPage />} />
+                <Route path="/login/:userType" element={<LoginPage />} />
             </Routes>
         </BrowserRouter>
     </ChakraProvider>
