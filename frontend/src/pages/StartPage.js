@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Box, Text, Grid, GridItem, Button, Center, Flex, Image, Link } from "@chakra-ui/react";
+import { Link as ReactRouterLink } from "react-router-dom";
+import { Box, Text, Grid, GridItem, Button, Center, Flex, Image, Link as ChakraLink } from "@chakra-ui/react";
 
 function StartPage() {
   const [isPacientHovered, setIsPacientHovered] = useState(false);
@@ -37,12 +38,14 @@ function StartPage() {
                 transform: 'scale(0.95)',
                 borderColor: 'linear-gradient(to-l, #4CBCAC, #05C676)',
               }}>
-                <Flex flexDirection="column" h="197px">
-                  <Image
-                    src={isPacientHovered ? "/images/pacient_icon_white.png" : "/images/pacient_icon.png"}
-                  />
-                  <Text fontSize="2xl" fontWeight="bold" bgClip='text' bgGradient={isPacientHovered ? 'linear(to-l, #FFFFFF, #FFFFFF)' : 'linear(to-l, #4CBCAC, #05C47C)'} >Pacient</Text>
-                </Flex>
+                <ChakraLink as={ReactRouterLink} to='/login'>
+                  <Flex flexDirection="column" h="197px">
+                    <Image
+                      src={isPacientHovered ? "/images/pacient_icon_white.png" : "/images/pacient_icon.png"}
+                    />
+                    <Text fontSize="2xl" fontWeight="bold" bgClip='text' bgGradient={isPacientHovered ? 'linear(to-l, #FFFFFF, #FFFFFF)' : 'linear(to-l, #4CBCAC, #05C47C)'} >Pacient</Text>
+                  </Flex>
+                </ChakraLink>
               </Button>
               <Button 
               marginLeft='50px'
@@ -60,13 +63,16 @@ function StartPage() {
               _active={{
                 transform: 'scale(0.95)',
                 borderColor: 'linear-gradient(to-l, #4CBCAC, #05C676)',
-              }}>
-                <Flex flexDirection="column" h="197px">
-                  <Image
-                    src={isMedicHovered ? "/images/medic_icon_white.png" : "/images/medic_icon.png"}
-                  />
-                  <Text fontSize="2xl" fontWeight="bold" bgGradient={isMedicHovered ? 'linear(to-l, #FFFFFF, #FFFFFF)' : 'linear(to-l, #4CBCAC, #05C676)'} bgClip='text'>Medic</Text>
-                </Flex>
+              }}
+              >
+                <ChakraLink as={ReactRouterLink} to='/login'>
+                  <Flex flexDirection="column" h="197px">
+                    <Image
+                      src={isMedicHovered ? "/images/medic_icon_white.png" : "/images/medic_icon.png"}
+                    />
+                    <Text fontSize="2xl" fontWeight="bold" bgGradient={isMedicHovered ? 'linear(to-l, #FFFFFF, #FFFFFF)' : 'linear(to-l, #4CBCAC, #05C676)'} bgClip='text'>Medic</Text>
+                  </Flex>
+                </ChakraLink>
               </Button>
             </Center>
           </GridItem>
@@ -74,9 +80,9 @@ function StartPage() {
       </Center>
       <Box marginLeft="50px" marginTop='40px'>
         <Text fontSize="" fontWeight="bold" color="#05C676">
-          <Link href="https://ms.gov.md/" isExternal>
+          <ChakraLink href="https://ms.gov.md/" isExternal>
             Ministerul Sănătăţii al Republicii Moldova
-          </Link>
+          </ChakraLink>
         </Text>
       </Box>
     </div>
