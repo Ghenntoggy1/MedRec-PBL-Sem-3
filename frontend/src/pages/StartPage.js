@@ -49,6 +49,10 @@ function StartPage() {
                     />
                     <Text fontSize="2xl" fontWeight="bold" bgClip='text' bgGradient={isPacientHovered ? 'linear(to-l, #FFFFFF, #FFFFFF)' : 'linear(to-l, #4CBCAC, #05C47C)'} >Pacient</Text>
                   </Flex>
+<<<<<<< HEAD
+=======
+                
+>>>>>>> 52cf493f951563a08ab412fa4f102ef75962e64e
                 </Button>
               </ChakraLink>
               <ChakraLink as={ReactRouterLink} to={`/login/${'medic'}`} style={{ textDecoration: 'none' }}>  {/* TODO repair userType */}
@@ -78,8 +82,13 @@ function StartPage() {
                     />
                     <Text fontSize="2xl" fontWeight="bold" bgGradient={isMedicHovered ? 'linear(to-l, #FFFFFF, #FFFFFF)' : 'linear(to-l, #4CBCAC, #05C676)'} bgClip='text'>Medic</Text>
                   </Flex>
+<<<<<<< HEAD
               </Button>
             </ChakraLink>
+=======
+                </Button>
+              </ChakraLink>
+>>>>>>> 52cf493f951563a08ab412fa4f102ef75962e64e
             </Center>
           </GridItem>
         </Grid>
