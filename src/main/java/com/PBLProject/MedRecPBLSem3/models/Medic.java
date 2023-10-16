@@ -5,18 +5,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Transient;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
+import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
-public class Patient {
+public class Medic {
     @Id
     @GeneratedValue
     private Long id;
     private Long idnp;
-    private Long medRecId;
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
@@ -30,6 +29,7 @@ public class Patient {
     private String streetNumber;
     private int apartmentNumber;
     private String postalCode;
+    private String speciality;
 
     public Long getId() {
         return id;
@@ -149,11 +149,11 @@ public class Patient {
         this.country = country;
     }
 
-    public Long getMedRecId() {
-        return medRecId;
+    public String getSpeciality() {
+        return speciality;
     }
 
-    public void setMedRecId(Long medRecId) {
-        this.medRecId = medRecId;
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
 }
