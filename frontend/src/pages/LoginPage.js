@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Button, FormControl, FormLabel, Input, Stack, Text, SimpleGrid, GridItem, VisuallyHidden, Img, Link as ChakraLink } from '@chakra-ui/react';
 import { useParams } from 'react-router';
-import MainPage from './MainPage';
 import { Link as ReactRouterLink } from "react-router-dom";
 
 function Capitalize(str) {
