@@ -2,10 +2,14 @@ import React from 'react'
 import { useParams } from 'react-router-dom';
 
 function MainPage() {
-    const { userType } = useParams();
+    const { userType, idnp } = useParams();
 
     return (
-        <div>{userType}</div>
+        <div>
+            <p>IDNP: {idnp}</p>
+            <p>userType: {userType}</p>
+            {/* Display other content on the main page */}
+        </div>
     )
 }
 
