@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, FormControl, FormLabel, Input, Stack, Text, SimpleGrid, GridItem, VisuallyHidden, Img, Link as ChakraLink } from '@chakra-ui/react';
 import { useParams } from 'react-router';
+import { data } from '../api/data';
 import { Link as ReactRouterLink } from "react-router-dom";
 
 function Capitalize(str) {
@@ -9,6 +10,8 @@ function Capitalize(str) {
 
 const LoginPage = () => {
     const { userType } = useParams();
+    const [idnp, setIdnp] = useState(''); // State for input value
+    const [response, setResponse] = useState(null);
 
     let icon = null;
 
@@ -20,6 +23,29 @@ const LoginPage = () => {
     }
 
     const [isHovered, setIsHovered] = useState(false);
+
+    const handleIdnpChange = (event) => {
+        setIdnp(event.target.value);
+    };
+
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        
+        try {
+            let apiResponse;
+
+            if (userType === 'pacient') {
+                apiResponse = await data.CheckPacientId(idnp);
+            } else if (userType === 'medic') {
+                apiResponse = await data.CheckMedicId(idnp);
+            }
+
+            setResponse(apiResponse);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
 
     return(
         <div>
@@ -55,9 +81,10 @@ const LoginPage = () => {
                         placeholder="INDP"
                         required
                         maxLength= '13'
+                        onChange={handleIdnpChange}
                         />
                     </GridItem>
-                    <ChakraLink as={ReactRouterLink} to={`/mainpage/${userType}`} style={{ textDecoration: 'none' }}>
+                    {/* <ChakraLink as={ReactRouterLink} to={`/mainpage/${userType}`} style={{ textDecoration: 'none' }}> */}
                         <Button
                             as={GridItem}
                             w="full"
@@ -84,10 +111,17 @@ const LoginPage = () => {
                                 transform: 'scale(0.95)',
                                 borderColor: 'gray',
                             }}
+                            onClick={handleFormSubmit}
                         >
                             <Text>Logare ca {Capitalize(userType)}</Text>
                         </Button>
-                    </ ChakraLink>
+                    {/* </ ChakraLink> */}
+                        {response && (
+                            <div>
+                                <p>API Response:</p>
+                                <pre>{JSON.stringify(response.data, null, 2)}</pre>
+                            </div>
+                        )}
                 </SimpleGrid>
             </div>
         </div>

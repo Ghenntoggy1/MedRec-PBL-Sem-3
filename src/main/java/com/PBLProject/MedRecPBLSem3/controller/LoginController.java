@@ -18,18 +18,20 @@ public class LoginController {
     @Autowired
     private MedicRepository medicRepository;
 
-    @PostMapping("/login/{userType}")
-    public ResponseEntity<String> login(@PathVariable String userType, @RequestBody Long IDNP) {
-        if ("medic".equals(userType)) {
-            Medic medic = medicRepository.findByidnp(IDNP);
-            if (medic != null) {
-                return ResponseEntity.ok("LOGARE CA MEDIC CU SUCCES");
-            }
-        } else if ("pacient".equals(userType)) {
-            Patient patient = patientRepository.findByidnp(IDNP);
-            if (patient != null) {
-                return ResponseEntity.ok("LOGARE CA PACIENT CU SUCCES");
-            }
+    @PostMapping("/login/medic")
+    public ResponseEntity<String> loginMedic(@RequestBody LoginForm loginForm) {
+        Medic medic = medicRepository.findByidnp(loginForm.idnp);
+        if (medic != null) {
+            return ResponseEntity.ok("LOGARE CA MEDIC CU SUCCES");
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("IDNP GREŞIT!");
+    }
+
+    @PostMapping("/login/pacient")
+    public ResponseEntity<String> loginPacient(@RequestBody LoginForm loginForm) {
+        Patient patient = patientRepository.findByidnp(loginForm.idnp);
+        if (patient != null) {
+            return ResponseEntity.ok("LOGARE CA PACIENT CU SUCCES");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("IDNP GREŞIT!");
     }
