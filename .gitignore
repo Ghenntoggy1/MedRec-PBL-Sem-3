@@ -1,4 +1,6 @@
 HELP.md
+package-lock.json
+package.json
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -31,7 +33,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-### packages ###
-package-lock.json
-package.json
