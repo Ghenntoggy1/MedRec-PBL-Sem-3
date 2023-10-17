@@ -19,6 +19,7 @@ public class LoginController {
     private MedicRepository medicRepository;
 
     @PostMapping("/login/medic")
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<String> loginMedic(@RequestBody LoginForm loginForm) {
         Medic medic = medicRepository.findByidnp(loginForm.idnp);
         if (medic != null) {
