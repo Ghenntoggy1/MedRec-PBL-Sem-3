@@ -25,7 +25,7 @@ public class LoginController {
         if (medic != null) {
             return ResponseEntity.ok("LOGARE CA MEDIC CU SUCCES");
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("IDNP GREŞIT!");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("IDNP GREŞIT!");  // TODO write on page INVALID IDNP
     }
 
     @PostMapping("/login/pacient")

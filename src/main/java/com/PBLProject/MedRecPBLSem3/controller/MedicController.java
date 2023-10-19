@@ -3,6 +3,7 @@ package com.PBLProject.MedRecPBLSem3.controller;
 import com.PBLProject.MedRecPBLSem3.models.Medic;
 import com.PBLProject.MedRecPBLSem3.repository.MedicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,5 +24,10 @@ public class MedicController {
     @PostMapping("/addMedics")
     List<Medic> addMedics(@RequestBody List<Medic> medics) {
         return medicRepository.saveAll(medics);
+    }
+
+    @GetMapping("/getMedics")
+    public List<Medic> getMedics() {
+        return medicRepository.findAll();
     }
 }
