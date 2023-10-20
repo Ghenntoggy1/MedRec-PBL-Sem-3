@@ -1,16 +1,22 @@
-
-// Pacient.js
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 
 const Pacient = () => {
-  return (
+  const [selectedMenuItem, setSelectedMenuItem] = useState('Informații generale');
 
-<div>
-      <h1>Informhjkl;.,baseții generale</h1>
-      {/* Add content sbpecific to the "Informații generale" page here */}
-    </div>  
+  const handleMenuItemClick = (itemName) => {
+    setSelectedMenuItem(itemName);
+    // Handle the click event logic here, such as updating state or performing other actions
+    console.log(`Menu item clicked: ${itemName}`);
+  };
+
+  return (
+    <div>
+      <Sidebar onItemClick={handleMenuItemClick} />
+      {/* Render other components or content based on the selectedMenuItem state */}
+    </div>
   );
 };
 
 export default Pacient;
+

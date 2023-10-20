@@ -11,9 +11,6 @@ import {
   Drawer,
   DrawerContent,
 } from '@chakra-ui/react';
-import {
-  FiMenu,
-} from 'react-icons/fi';
 
 const LinkItems = [
   { name: 'Informații generale' },
@@ -26,12 +23,18 @@ const LinkItems = [
   { name: 'Istoria totală'},
 ];
 
+
+
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedMenuItem, setSelectedMenuItem] = useState(null);
 
   const onClose = () => setIsOpen(false);
-  const onOpen = () => setIsOpen(true);
 
+  const handleMenuItemClick = (Name) => {
+    setSelectedMenuItem(Name);
+    onClose(); // Close the sidebar when a menu item is clicked
+  };
 
   return (
     <Box minH="100vh" bg={useColorModeValue('1FAC94', 'gray.900')}>
@@ -45,7 +48,7 @@ const Sidebar = () => {
         size="full"
       >
         <DrawerContent>
-          <SidebarContent onClose={onClose} />
+          <SidebarContent onClose={onClose} onItemClick={handleMenuItemClick} />
         </DrawerContent>
       </Drawer>
       <Box ml={60} p="4">
@@ -55,7 +58,7 @@ const Sidebar = () => {
   );
 };
 
-const SidebarContent = ({ onClose, ...rest }) => {
+const SidebarContent = ({ onClose,onItemClick, ...rest }) => {
   return (
     <Box
       bgGradient='linear-gradient(to-t, #05C676, #4CBCAC)'
@@ -75,9 +78,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
       </Flex>
       <Divider orientation="horizontal" bg="white" mt="2" h="1px" /> {/* Horizontal line */}
       {LinkItems.map((link) => (
-        <NavItem key={link.name}>
-          {link.name}
-        </NavItem>
+         <NavItem key={link.name} onClick={() => onItemClick(link.name)}>
+         {link.name}
+       </NavItem>
       ))}
     </Box>
   );
@@ -85,13 +88,14 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
 
 
-const NavItem = ({ children, ...rest }) => {
+const NavItem = ({ children, onClick, ...rest }) => {
   return (
     <Box
       as="a"
       href="#"
       style={{ textDecoration: 'none' }}
       _focus={{ boxShadow: 'none' }}
+      onClick={onClick} // Add onClick event handler here
     >
       <Flex
         align="center"
@@ -111,6 +115,7 @@ const NavItem = ({ children, ...rest }) => {
     </Box>
   );
 };
+
 
 export default Sidebar;
 
