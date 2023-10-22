@@ -22,6 +22,9 @@ export default function Pacient(){
         <Text mb={2}>
           Data nașterii:
         </Text>
+        <Text mb={2}>
+          Numărul de asigurare:
+        </Text>
         <Text mb={2} >
           Sex:
         </Text>
