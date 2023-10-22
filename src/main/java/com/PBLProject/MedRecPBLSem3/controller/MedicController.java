@@ -30,4 +30,9 @@ public class MedicController {
     public List<Medic> getMedics() {
         return medicRepository.findAll();
     }
+
+    @GetMapping("/getMedicByIdnp")
+    public Medic getMedicByIdnp(Long idnp) {
+        return medicRepository.findByidnp(idnp);
+    }
 }
