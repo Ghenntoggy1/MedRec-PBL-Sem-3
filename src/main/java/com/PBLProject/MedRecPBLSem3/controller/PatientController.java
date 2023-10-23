@@ -16,14 +16,23 @@ public class PatientController {
     @Autowired
     private PatientRepository patientRepository;
 
-    @PostMapping("/patient")
+    @PostMapping("/addPatient")
     Patient newPatient(@RequestBody Patient newPatient) {
         return patientRepository.save(newPatient);
     }
-
-    @GetMapping("/patients")
-    List<Patient> getAllPatients() {
+    @PostMapping("/addPatients")
+    List<Patient> addPatients(@RequestBody List<Patient> patients) {
+        return patientRepository.saveAll(patients);
+    }
+    @GetMapping("/getPatients")
+    public List<Patient> getPatients() {
         return patientRepository.findAll();
     }
+
+    @GetMapping("/getPatientByIdnp")
+    public Patient getPatientByIdnp(Long idnp) {
+        return patientRepository.findByidnp(idnp);
+    }
+
 
 }

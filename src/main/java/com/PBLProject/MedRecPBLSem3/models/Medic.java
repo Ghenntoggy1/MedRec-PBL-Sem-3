@@ -1,22 +1,21 @@
 package com.PBLProject.MedRecPBLSem3.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
+import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
-public class Patient {
+public class Medic {
     @Id
     @GeneratedValue
     private Long id;
     private Long idnp;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_medical_record_id")
-    private MedicalRecord medicalRecord;
-    private String insuranceNumber;
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
@@ -30,6 +29,7 @@ public class Patient {
     private String streetNumber;
     private int apartmentNumber;
     private String postalCode;
+    private String speciality;
 
     public Long getId() {
         return id;
@@ -149,19 +149,11 @@ public class Patient {
         this.country = country;
     }
 
-    public MedicalRecord getMedicalRecord() {
-        return medicalRecord;
+    public String getSpeciality() {
+        return speciality;
     }
 
-    public void setMedicalRecord(MedicalRecord medicalRecord) {
-        this.medicalRecord = medicalRecord;
-    }
-
-    public String getInsuranceNumber() {
-        return insuranceNumber;
-    }
-
-    public void setInsuranceNumber(String insuranceNumber) {
-        this.insuranceNumber = insuranceNumber;
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
 }
