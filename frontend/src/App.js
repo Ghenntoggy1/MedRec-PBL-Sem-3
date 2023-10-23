@@ -1,9 +1,10 @@
 import React from 'react';
 import { ChakraProvider, CSSReset } from '@chakra-ui/react';
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, Routes} from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, Routes, BrowserRouter } from 'react-router-dom';
 import customTheme from './style/customTheme';
 import LoginPage from './pages/LoginPage';
 import MainPage from './pages/MainPage';
+import StartPage from './pages/StartPage';
 import RootLayout from './layouts/RootLayout';
 import Pacient from './pages/Pacient';
 import Diagnoze from './pages/Diagnoze';
