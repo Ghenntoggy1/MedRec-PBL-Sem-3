@@ -2,7 +2,6 @@ package com.PBLProject.MedRecPBLSem3.controller;
 
 import com.PBLProject.MedRecPBLSem3.models.Institution;
 import com.PBLProject.MedRecPBLSem3.models.MedicalRecord;
-import com.PBLProject.MedRecPBLSem3.models.Patient;
 import com.PBLProject.MedRecPBLSem3.repository.InstitutionRepository;
 import com.PBLProject.MedRecPBLSem3.repository.MedicalRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
