@@ -1,9 +1,7 @@
 package com.PBLProject.MedRecPBLSem3.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -16,12 +14,15 @@ public class Patient {
     @GeneratedValue
     private Long id;
     private Long idnp;
-    private Long medRecId;
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_medical_record_id", referencedColumnName = "medrecId")
+    private MedicalRecord medicalRecord;
+    private String insuranceNumber;
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
     private char gender;
-    @Transient
     private int age;
     private String contact;
     private String country;
@@ -31,6 +32,15 @@ public class Patient {
     private int apartmentNumber;
     private String postalCode;
 
+    private void calculateAge() {
+        if (dateOfBirth != null) {
+            LocalDate birthDate = dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate currentDate = LocalDate.now();
+            age = Period.between(birthDate, currentDate).getYears();
+        } else {
+            age = 0;
+        }
+    }
     public Long getId() {
         return id;
     }
@@ -69,6 +79,7 @@ public class Patient {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+        calculateAge();
     }
 
     public String getResidency() {
@@ -120,13 +131,7 @@ public class Patient {
     }
 
     public int getAge() {
-        if (dateOfBirth != null) {
-            LocalDate birthDate = dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate currentDate = LocalDate.now();
-            return Period.between(birthDate, currentDate).getYears();
-        } else {
-            return 0;
-        }
+        return this.age;
     }
 
     public void setAge(int age) {
@@ -149,11 +154,19 @@ public class Patient {
         this.country = country;
     }
 
-    public Long getMedRecId() {
-        return medRecId;
+    public MedicalRecord getMedicalRecord() {
+        return medicalRecord;
     }
 
-    public void setMedRecId(Long medRecId) {
-        this.medRecId = medRecId;
+    public void setMedicalRecord(MedicalRecord medicalRecord) {
+        this.medicalRecord = medicalRecord;
+    }
+
+    public String getInsuranceNumber() {
+        return insuranceNumber;
+    }
+
+    public void setInsuranceNumber(String insuranceNumber) {
+        this.insuranceNumber = insuranceNumber;
     }
 }

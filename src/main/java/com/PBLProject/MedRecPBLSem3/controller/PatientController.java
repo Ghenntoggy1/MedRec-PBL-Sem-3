@@ -28,4 +28,11 @@ public class PatientController {
     public List<Patient> getPatients() {
         return patientRepository.findAll();
     }
+
+    @GetMapping("/getPatientByIdnp")
+    public Patient getPatientByIdnp(Long idnp) {
+        return patientRepository.findByidnp(idnp);
+    }
+
+
 }

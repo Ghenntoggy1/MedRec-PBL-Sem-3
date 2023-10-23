@@ -31,6 +31,16 @@ public class Medic {
     private String postalCode;
     private String speciality;
 
+    private void calculateAge() {
+        if (dateOfBirth != null) {
+            LocalDate birthDate = dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate currentDate = LocalDate.now();
+            age = Period.between(birthDate, currentDate).getYears();
+        } else {
+            age = 0;
+        }
+    }
+
     public Long getId() {
         return id;
     }
@@ -69,6 +79,7 @@ public class Medic {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+        calculateAge();
     }
 
     public String getResidency() {
@@ -120,13 +131,7 @@ public class Medic {
     }
 
     public int getAge() {
-        if (dateOfBirth != null) {
-            LocalDate birthDate = dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate currentDate = LocalDate.now();
-            return Period.between(birthDate, currentDate).getYears();
-        } else {
-            return 0;
-        }
+        return this.age;
     }
 
     public void setAge(int age) {
