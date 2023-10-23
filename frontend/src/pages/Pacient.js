@@ -5,13 +5,12 @@ export default function Pacient(){
     fontSize: "1.4em",
     textAlign:'left',
     color:"#02825D" ,
-    fontFamily:"molengo",
      
   };
   return(
     <SimpleGrid columns={2} spacing={10} minChildWidth="250px" height="700px">
       <Box >
-      <Heading mb={10} size='md' color="#02825D" fontFamily="molengo"fontSize="2.5em" >Informații generale</Heading>
+      <Heading mb={10} size='md' color="#02825D" fontSize="2.5em" >Informații generale</Heading>
       <div style={textStyle} mb={2}>
         <Text mb={2}>
           Nume:

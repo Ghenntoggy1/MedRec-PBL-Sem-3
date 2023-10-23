@@ -15,7 +15,7 @@ export default function Sidebar(){
 
 
   return(
-    <List color="white" fontFamily="molengo"fontSize="1.2em" spacing={4}>
+    <List color="white" fontSize="1.2em" spacing={4}>
        <ListItem>
        <div style={{ marginRight: "1rem" }}>
           <Image src='/images/pacient_icon_white.png' alt="Icon" boxSize="5rem" />

@@ -6,7 +6,7 @@ const CustomAccordionItem = ({ denumirea, mediculResponsabil, data, descrierea }
     <AccordionItem>
       <h2>
         <AccordionButton>
-          <Box as="span" flex='1' textAlign='left' fontSize="1.4em" fontFamily="molengo" color="#02825D">
+          <Box as="span" flex='1' textAlign='left' fontSize="1.4em"  color="#02825D">
             {`${denumirea}/${mediculResponsabil}/${data}`}
           </Box>
           <AccordionIcon />
