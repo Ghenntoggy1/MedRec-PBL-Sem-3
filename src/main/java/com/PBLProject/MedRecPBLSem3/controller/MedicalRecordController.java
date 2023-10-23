@@ -7,6 +7,7 @@ import com.PBLProject.MedRecPBLSem3.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -30,7 +31,15 @@ public class MedicalRecordController {
 
     @PostMapping("/addMedicalRecords")
     List<MedicalRecord> newMedicalRecords(@RequestBody List<MedicalRecord> medicalRecords) {
-        return medicalRecordRepository.saveAll(medicalRecords);
+        List<MedicalRecord> savedMedicalRecords = new ArrayList<>();
+        for (MedicalRecord medicalRecord : medicalRecords) {
+            Patient patient = patientRepository.findByidnp(medicalRecord.getPatientIdnp());
+            if (patient != null) {
+                medicalRecord.setPatient(patient);
+                savedMedicalRecords.add(medicalRecordRepository.save(medicalRecord));
+            }
+        }
+        return savedMedicalRecords;
     }
 
     @GetMapping("/getMedicalRecords")
@@ -39,7 +48,12 @@ public class MedicalRecordController {
     }
 
     @GetMapping("/getMedicalRecordByPatient")
-     MedicalRecord getMedicalRecordByPatient(Patient patient) {
-        return medicalRecordRepository.findByPatient(patient);
+    MedicalRecord getMedicalRecordByPatient(@RequestParam Long idnp) {
+        Patient patient = patientRepository.findByidnp(idnp);
+        if (patient != null) {
+            return medicalRecordRepository.findByPatient(patient);
+        } else {
+            return null;
+        }
     }
 }

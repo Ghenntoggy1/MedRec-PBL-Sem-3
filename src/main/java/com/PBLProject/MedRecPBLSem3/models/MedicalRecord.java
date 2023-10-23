@@ -1,5 +1,6 @@
 package com.PBLProject.MedRecPBLSem3.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,7 +8,11 @@ public class MedicalRecord {
     @Id
     @GeneratedValue
     private Long medrecId;
-    private Long institutionId;
+//    private Long institutionId;
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_institution_id", referencedColumnName = "institutionId")
+    private Institution institution;
     private Long diagnosisReportId;
     @Transient
     private Long patientIdnp;
@@ -22,12 +27,20 @@ public class MedicalRecord {
         this.medrecId = medrecId;
     }
 
-    public Long getInstitutionId() {
-        return institutionId;
+//    public Long getInstitutionId() {
+//        return institutionId;
+//    }
+//
+//    public void setInstitutionId(Long institutionId) {
+//        this.institutionId = institutionId;
+//    }
+
+    public Institution getInstitution() {
+        return institution;
     }
 
-    public void setInstitutionId(Long institutionId) {
-        this.institutionId = institutionId;
+    public void setInstitution(Institution institution) {
+        this.institution = institution;
     }
 
     public Long getDiagnosisReportId() {
