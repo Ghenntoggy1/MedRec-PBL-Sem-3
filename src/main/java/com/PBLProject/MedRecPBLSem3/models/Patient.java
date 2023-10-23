@@ -1,5 +1,6 @@
 package com.PBLProject.MedRecPBLSem3.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -13,15 +14,15 @@ public class Patient {
     @GeneratedValue
     private Long id;
     private Long idnp;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_medical_record_id")
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_medical_record_id", referencedColumnName = "medrecId")
     private MedicalRecord medicalRecord;
     private String insuranceNumber;
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
     private char gender;
-    @Transient
     private int age;
     private String contact;
     private String country;
@@ -31,6 +32,15 @@ public class Patient {
     private int apartmentNumber;
     private String postalCode;
 
+    private void calculateAge() {
+        if (dateOfBirth != null) {
+            LocalDate birthDate = dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate currentDate = LocalDate.now();
+            age = Period.between(birthDate, currentDate).getYears();
+        } else {
+            age = 0;
+        }
+    }
     public Long getId() {
         return id;
     }
@@ -69,6 +79,7 @@ public class Patient {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+        calculateAge();
     }
 
     public String getResidency() {
@@ -120,13 +131,7 @@ public class Patient {
     }
 
     public int getAge() {
-        if (dateOfBirth != null) {
-            LocalDate birthDate = dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate currentDate = LocalDate.now();
-            return Period.between(birthDate, currentDate).getYears();
-        } else {
-            return 0;
-        }
+        return this.age;
     }
 
     public void setAge(int age) {

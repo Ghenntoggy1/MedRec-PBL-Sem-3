@@ -5,10 +5,7 @@ import com.PBLProject.MedRecPBLSem3.models.Patient;
 import com.PBLProject.MedRecPBLSem3.repository.MedicalRecordRepository;
 import com.PBLProject.MedRecPBLSem3.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,14 +18,14 @@ public class MedicalRecordController {
     PatientRepository patientRepository;
 
     @PostMapping("/addMedicalRecord")
-    MedicalRecord newMedicalRecord(@RequestBody MedicalRecord newMedicalRecord) {
-        Patient patient = patientRepository.findById(newMedicalRecord.getPatient().getId()).orElse(null);
-
-        newMedicalRecord.setPatient(patient);
-        medicalRecordRepository.save(newMedicalRecord);
-        System.out.println(newMedicalRecord);
-        //patient.setMedicalRecord(newMedicalRecord);
-        return medicalRecordRepository.save(newMedicalRecord);
+    MedicalRecord newMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
+        Patient patient = patientRepository.findByidnp(medicalRecord.getPatientIdnp());
+        if (patient != null) {
+            medicalRecord.setPatient(patient);
+            return medicalRecordRepository.save(medicalRecord);
+        } else {
+            return null;
+        }
     }
 
     @PostMapping("/addMedicalRecords")

@@ -9,6 +9,8 @@ public class MedicalRecord {
     private Long medrecId;
     private Long institutionId;
     private Long diagnosisReportId;
+    @Transient
+    private Long patientIdnp;
     @OneToOne(mappedBy = "medicalRecord")
     private Patient patient;
 
@@ -42,15 +44,16 @@ public class MedicalRecord {
 
     public void setPatient(Patient patient) {
         this.patient = patient;
+        if (patient != null) {
+            patient.setMedicalRecord(this);
+        }
     }
 
-    @Override
-    public String toString() {
-        return "MedicalRecord{" +
-                "medrecId=" + medrecId +
-                ", institutionId=" + institutionId +
-                ", diagnosisReportId=" + diagnosisReportId +
-                ", patient=" + patient +
-                '}';
+    public Long getPatientIdnp() {
+        return patientIdnp;
+    }
+
+    public void setPatientIdnp(Long patientIdnp) {
+        this.patientIdnp = patientIdnp;
     }
 }
