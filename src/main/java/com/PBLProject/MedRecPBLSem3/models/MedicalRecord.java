@@ -43,4 +43,14 @@ public class MedicalRecord {
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
+
+    @Override
+    public String toString() {
+        return "MedicalRecord{" +
+                "medrecId=" + medrecId +
+                ", institutionId=" + institutionId +
+                ", diagnosisReportId=" + diagnosisReportId +
+                ", patient=" + patient +
+                '}';
+    }
 }

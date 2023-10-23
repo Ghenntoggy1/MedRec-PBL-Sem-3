@@ -33,4 +33,6 @@ public class PatientController {
     public Patient getPatientByIdnp(Long idnp) {
         return patientRepository.findByidnp(idnp);
     }
+
+
 }

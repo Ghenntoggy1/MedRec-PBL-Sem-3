@@ -13,7 +13,7 @@ public class Patient {
     @GeneratedValue
     private Long id;
     private Long idnp;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_medical_record_id")
     private MedicalRecord medicalRecord;
     private String insuranceNumber;
