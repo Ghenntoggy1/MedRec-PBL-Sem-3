@@ -31,7 +31,7 @@ public class LoginController {
     public ResponseEntity<String> loginPacient(@RequestBody LoginForm loginForm) {
         Patient patient = patientRepository.findByidnp(loginForm.idnp);
         if (patient != null) {
-            return ResponseEntity.ok("LOGARE CA PACIENT CU SUCCES" + patient.getIdnp());
+            return ResponseEntity.ok("LOGARE CA PACIENT CU SUCCES! " + patient.getIdnp());
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("IDNP GREŞIT!");
     }
