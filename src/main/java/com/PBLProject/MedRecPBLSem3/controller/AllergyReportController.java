@@ -30,7 +30,6 @@ public class AllergyReportController {
     public ResponseEntity<List<AllergyReport>> getAllergyReportsByPatient(@RequestBody LoginForm loginForm) {
         Patient patient = patientRepository.findByidnp(loginForm.idnp);
         MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(patient.getMedicalRecord().getMedrecId());
-        //MedicalRecord medicalRecord1 = patient.getMedicalRecord();
         List<AllergyReport> allergyReports;
         if (medicalRecord != null) {
             allergyReports = medicalRecord.getAllergyReports();
