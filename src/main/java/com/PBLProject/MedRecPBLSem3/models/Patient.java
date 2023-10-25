@@ -24,6 +24,7 @@ public class Patient {
     private String lastName;
     private Date dateOfBirth;
     private char gender;
+    private String bloodGroup;
     private int age;
     private String contact;
     private String country;
@@ -56,6 +57,14 @@ public class Patient {
 
     public void setIdnp(Long idnp) {
         this.idnp = idnp;
+    }
+
+    public String getBloodGroup() {
+        return bloodGroup;
+    }
+
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
     }
 
     public String getFirstName() {
