@@ -15,7 +15,7 @@ export default function Pacient(){
 
   const [patientData, setPatientData] = useState(null);
 
-  console.log(idnp);
+  const [medicalRecordData, setMedicalRecordData] = useState(null);
 
   useEffect(() => {
     const fetchPatientData = async () => {
@@ -32,14 +32,34 @@ export default function Pacient(){
       }
     };
 
-    fetchPatientData();
-  }, [idnp]);
+      fetchPatientData();
+    }, [idnp]);
 
+    console.log(patientData);
+  useEffect(() => {
+    const fetchMedicalRecord = async () => {
+      try {
+        const response = await data.fetchMedicalRecord(idnp);
+
+        if (response.status === 200) {
+          setMedicalRecordData(response.data);
+        } else {
+          console.error("Medical Record not found");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+      fetchMedicalRecord();
+    }, [idnp]);
+    
   if (!patientData) {
     return <div>Loading...</div>;
   }
 
   console.log(patientData);
+  console.log(patientData.medrecId);
 
   return(
     <SimpleGrid columns={2} spacing={10} minChildWidth="250px" height="700px">
@@ -59,7 +79,10 @@ export default function Pacient(){
           Numărul de asigurare: {patientData.insuranceNumber}
         </Text>
         <Text mb={2} >
-          Sex: {patientData.gender}  {/* TODO full gender name */}
+          Sex: {patientData.gender === "F" ? "Feminin" : "Masculin"}
+        </Text>
+        <Text mb={2} >
+          Fişa medicală: {medicalRecordData ? medicalRecordData.medrecId : 'N/A'}
         </Text>
         <Text mb={2} >
           Vârsta: {patientData.age}

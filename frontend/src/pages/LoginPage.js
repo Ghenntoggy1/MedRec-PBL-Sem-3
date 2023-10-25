@@ -97,7 +97,6 @@ const LoginPage = () => {
                         onChange={handleIdnpChange}
                         />
                     </GridItem>
-                    {/* <ChakraLink as={ReactRouterLink} to={`/mainpage/${userType}`} style={{ textDecoration: 'none' }}> */}
                         <Button
                             as={GridItem}
                             w="full"
@@ -128,7 +127,6 @@ const LoginPage = () => {
                         >
                             <Text>Logare ca {Capitalize(userType)}</Text>
                         </Button>
-                    {/* </ ChakraLink> */}
                         {response && (
                             <div>
                                 <p>API Response:</p>
