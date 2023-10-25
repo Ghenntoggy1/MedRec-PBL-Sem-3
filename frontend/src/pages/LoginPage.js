@@ -43,9 +43,17 @@ const LoginPage = () => {
             
             setResponse(apiResponse);
             
-            if (apiResponse.status === 200) { // apiResponse.startsWith('LOGARE CA PACIENT CU SUCCES! ')
-                navigate(`/pacient/${idnp}`);
+            if (userType === 'pacient') {
+                if (apiResponse.status === 200) { // apiResponse.startsWith('LOGARE CA PACIENT CU SUCCES! ')
+                    navigate(`/pacient/${idnp}`);
+                }
+            } else if (userType === 'medic') {
+                if (apiResponse.status === 200) { // apiResponse.startsWith('LOGARE CA PACIENT CU SUCCES! ')
+                    // navigate(`/medic/${idnp}`); // TODO medic page
+                }
             }
+
+            
         } catch (error) {
             console.error(error);
         }

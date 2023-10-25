@@ -59,7 +59,10 @@ export default function Pacient(){
           Numărul de asigurare: {patientData.insuranceNumber}
         </Text>
         <Text mb={2} >
-          Sex: {patientData.gender}
+          Sex: {patientData.gender}  {/* TODO full gender name */}
+        </Text>
+        <Text mb={2} >
+          Vârsta: {patientData.age}
         </Text>
         <Text mb={2}>
           Grupa sangvină: placeholder
