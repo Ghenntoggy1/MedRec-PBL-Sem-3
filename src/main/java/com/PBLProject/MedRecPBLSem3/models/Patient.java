@@ -3,6 +3,7 @@ package com.PBLProject.MedRecPBLSem3.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -73,13 +74,20 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+    public String getDateOfBirth() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(dateOfBirth);
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-        calculateAge();
+    public void setDateOfBirth(String dateOfBirthString) {
+        try {
+            SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat outputDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            this.dateOfBirth = inputDateFormat.parse(dateOfBirthString);
+            calculateAge();
+        } catch (Exception e) {
+            this.dateOfBirth = null;
+        }
     }
 
     public String getResidency() {
@@ -168,5 +176,13 @@ public class Patient {
 
     public void setInsuranceNumber(String insuranceNumber) {
         this.insuranceNumber = insuranceNumber;
+    }
+
+    public String getFormattedDateOfBirth() {
+        if (dateOfBirth != null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+            return dateFormat.format(dateOfBirth);
+        }
+        return null;
     }
 }

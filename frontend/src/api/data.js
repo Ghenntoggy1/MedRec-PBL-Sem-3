@@ -24,6 +24,17 @@ export const data = {
 
         return response;
     },
+
+    fetchPatientInfo: async (idnp) => {
+        const response = await axios.post(`${apiUrl}/api/informatii_generale`, { idnp }, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+          });
+
+          return response;
+      },
 };
 
 

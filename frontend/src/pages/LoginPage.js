@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Button, FormControl, FormLabel, Input, Stack, Text, SimpleGrid, GridItem, VisuallyHidden, Img, Link as ChakraLink } from '@chakra-ui/react';
 import { useParams } from 'react-router';
 import { data } from '../api/data';
-import { Link as ReactRouterLink } from "react-router-dom";
+import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
 
 function Capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -12,6 +12,7 @@ const LoginPage = () => {
     const { userType } = useParams();
     const [idnp, setIdnp] = useState(''); // State for input value
     const [response, setResponse] = useState(null);
+    const navigate = useNavigate();
 
     let icon = null;
 
@@ -39,8 +40,12 @@ const LoginPage = () => {
             } else if (userType === 'medic') {
                 apiResponse = await data.CheckMedicId(idnp);
             }
-
+            
             setResponse(apiResponse);
+            
+            if (apiResponse.status === 200) { // apiResponse.startsWith('LOGARE CA PACIENT CU SUCCES! ')
+                navigate(`/pacient/${idnp}`);
+            }
         } catch (error) {
             console.error(error);
         }
