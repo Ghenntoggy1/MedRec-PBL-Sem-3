@@ -1,9 +1,32 @@
 import { Text, List, ListItem, Divider, Image } from "@chakra-ui/react"
 import { NavLink, useParams } from "react-router-dom"
+import { useState, useEffect } from "react";
+import { data } from "../api/data";
 
 export default function Sidebar() {
   const { idnp } = useParams();
 
+  const [patientData, setPatientData] = useState(null);
+  useEffect(() => {
+    const fetchPatientData = async () => {
+      console.log('fetchPatientData is called');
+      try {
+        const response = await data.fetchPatientInfo(idnp);
+
+        console.log('API Response:', response);
+
+        if (response.status === 200) {
+          setPatientData(response.data);
+        } else {
+          console.error("Patient not found");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+      fetchPatientData();
+    }, [idnp]);
 
   const isActive = (path) => {
     return window.location.pathname === path;
@@ -21,7 +44,7 @@ export default function Sidebar() {
         </div>
         <div>
           <Text fontSize="2xl" fontWeight="bold">
-            NUME, PRENUME
+            {patientData ? patientData.firstName + " " + patientData.lastName : "Loading..."}
           </Text>
         </div>
         <Divider my={5} borderColor="white" borderWidth="1.8px" />

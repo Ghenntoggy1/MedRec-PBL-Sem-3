@@ -32,7 +32,6 @@ export const data = {
               "Access-Control-Allow-Origin": "*",
             },
           });
-
           return response;
     },
 
@@ -43,7 +42,6 @@ export const data = {
               "Access-Control-Allow-Origin": "*",
             },
         });
-
         return response;
     }
 };

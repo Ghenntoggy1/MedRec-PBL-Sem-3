@@ -35,7 +35,6 @@ export default function Pacient(){
       fetchPatientData();
     }, [idnp]);
 
-    console.log(patientData);
   useEffect(() => {
     const fetchMedicalRecord = async () => {
       try {
@@ -57,9 +56,6 @@ export default function Pacient(){
   if (!patientData) {
     return <div>Loading...</div>;
   }
-
-  console.log(patientData);
-  console.log(patientData.medrecId);
 
   return(
     <SimpleGrid columns={2} spacing={10} minChildWidth="250px" height="700px">
