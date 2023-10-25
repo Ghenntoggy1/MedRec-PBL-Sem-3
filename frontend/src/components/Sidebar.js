@@ -9,7 +9,7 @@ export default function Sidebar() {
   const [patientData, setPatientData] = useState(null);
   useEffect(() => {
     const fetchPatientData = async () => {
-      console.log('fetchPatientData is called');
+      
       try {
         const response = await data.fetchPatientInfo(idnp);
 

@@ -43,6 +43,16 @@ export const data = {
             },
         });
         return response;
+    },
+
+    fetchAllergyReports: async (idnp) => {
+        const response = await axios.post(`${apiUrl}/api/getAllergyReportFront`, { idnp }, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+        });
+        return response;
     }
 };
 

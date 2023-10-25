@@ -52,7 +52,7 @@ export default function Pacient(){
 
       fetchMedicalRecord();
     }, [idnp]);
-    
+
   if (!patientData) {
     return <div>Loading...</div>;
   }
@@ -84,7 +84,7 @@ export default function Pacient(){
           Vârsta: {patientData.age}
         </Text>
         <Text mb={2}>
-          Grupa sangvină: placeholder
+          Grupa sangvină: {patientData.bloodGroup}
         </Text>
         <Text mb={2}>
           Localitatea: {patientData.country + ', ' + patientData.residency}

@@ -2,12 +2,14 @@ package com.PBLProject.MedRecPBLSem3.controller;
 
 import com.PBLProject.MedRecPBLSem3.models.AllergyReport;
 import com.PBLProject.MedRecPBLSem3.models.MedicalRecord;
+import com.PBLProject.MedRecPBLSem3.models.Patient;
 import com.PBLProject.MedRecPBLSem3.repository.AllergyReportRepository;
 import com.PBLProject.MedRecPBLSem3.repository.MedicalRecordRepository;
+import com.PBLProject.MedRecPBLSem3.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,6 +21,24 @@ public class AllergyReportController {
     @Autowired
     MedicalRecordRepository medicalRecordRepository;
 
+    @Autowired
+    PatientRepository patientRepository;
+
+    @PostMapping("/getAllergyReportFront")
+    public ResponseEntity<List<AllergyReport>> getAllergyReportsByPatient(@RequestBody LoginForm loginForm) {
+        Patient patient = patientRepository.findByidnp(loginForm.idnp);
+        MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(patient.getMedicalRecord().getMedrecId());
+        //MedicalRecord medicalRecord1 = patient.getMedicalRecord();
+        List<AllergyReport> allergyReports;
+        if (medicalRecord != null) {
+            allergyReports = medicalRecord.getAllergyReports();
+            return ResponseEntity.ok(allergyReports);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @GetMapping("/getAllergyReports")
     List<AllergyReport> getAllergyReports() {
         return allergyReportRepository.findAll();
@@ -27,7 +47,7 @@ public class AllergyReportController {
     @PostMapping("/addAllergyReport")
     AllergyReport newAllergyReport(@RequestBody AllergyReport allergyReport) {
         MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(allergyReport.getMedrecId());
-        System.out.println("MedRec: " + medicalRecord.getPatientIdnp());
+        //System.out.println("MedRec: " + medicalRecord.getPatientIdnp());
         if (medicalRecord != null) {
             allergyReport.setMedicalRecord(medicalRecord);
             return allergyReportRepository.save(allergyReport);

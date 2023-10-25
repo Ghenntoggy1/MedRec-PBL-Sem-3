@@ -1,27 +1,68 @@
 import { Box, Text, SimpleGrid, Heading, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel } from "@chakra-ui/react";
+import { useParams } from "react-router-dom";
+import { data } from "../api/data";
+import { useEffect, useState } from "react";
 
 export default function Alergii(){
+  const { idnp } = useParams();
+
+  const [allergyData, setAllergyData] = useState(null);
+
+  useEffect(() => {
+    const fetchAllergyData = async () => {
+      try {
+        const response = await data.fetchAllergyReports(idnp);
+        console.log('API Response:', response);
+        if (response.status === 200) {
+          setAllergyData(response.data);
+        } else {
+          console.error("Patient not found");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchAllergyData();
+    }, [idnp]);
+
   return(
     <SimpleGrid columns={2} spacing={10} minChildWidth="250px" height="700px">
     <Box>
       <Heading mb={10} size='md' color="#02825D" fontSize="2.5em" > Alergii</Heading>
       <Accordion allowToggle>
-  <AccordionItem>
-    <h2>
-      <AccordionButton>
-        <Box as="span" flex='1' textAlign='left' fontSize= "1.4em"  color="#02825D">
-          Denumirea/Medicul responsabil/Data
-        </Box>
-        <AccordionIcon />
-      </AccordionButton>
-    </h2>
-    <AccordionPanel pb={20}>
-     <Text>Denumirea:</Text>
-     <Text> Medicul responsabil:</Text>
-     <Text> Data:</Text>
-     <Text> Descrierea:</Text>
-    </AccordionPanel>
-  </AccordionItem>
+{/* 
+      {response && (
+            <div>
+                <p>API Response:</p>
+                <pre>{JSON.stringify(response.data, null, 2)}</pre>
+            </div>
+        )} */}
+    {allergyData ? 
+      allergyData.map((item, index) => (
+        <AccordionItem key={index}>
+          <h2>
+            <AccordionButton>
+              <Box as="span" flex='1' textAlign='left' fontSize="1.4em" color="#02825D">
+                {item.allergyName} - {item.medicName} - {item.timestamp}
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={20}>
+            <Text>Denumirea: {item.allergyName}</Text>
+            <Text>Medicul responsabil: {item.medicName}</Text>
+            <Text>Data: {item.timestamp}</Text>
+            <Text>Descrierea: {item.description}</Text>
+          </AccordionPanel>
+        </AccordionItem>
+      )) : 
+      (<h2>
+          <Box as="span" flex='1' textAlign='left' fontSize="1.4em" color="#02825D">
+            Nu au fost găsite Alergii
+          </Box>
+      </h2>)}
+  
 
 
 </Accordion>
