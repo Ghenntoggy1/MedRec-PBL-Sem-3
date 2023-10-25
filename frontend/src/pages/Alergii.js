@@ -31,42 +31,32 @@ export default function Alergii(){
     <Box>
       <Heading mb={10} size='md' color="#02825D" fontSize="2.5em" > Alergii</Heading>
       <Accordion allowToggle>
-{/* 
-      {response && (
-            <div>
-                <p>API Response:</p>
-                <pre>{JSON.stringify(response.data, null, 2)}</pre>
-            </div>
-        )} */}
-    {allergyData && allergyData.length > 0 ? 
-      allergyData.map((item, index) => (
-        <AccordionItem key={index}>
-          <h2>
-            <AccordionButton>
-              <Box as="span" flex='1' textAlign='left' fontSize="1.4em" color="#02825D">
-                {item.allergyName} - {item.medicName} - {item.timestamp}
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel pb={20}>
-            <Text>Denumirea: {item.allergyName}</Text>
-            <Text>Medicul responsabil: {item.medicName}</Text>
-            <Text>Data: {item.timestamp}</Text>
-            <Text>Descrierea: {item.description}</Text>
-          </AccordionPanel>
-        </AccordionItem>
-      )) : 
-      (<h2>
-          <Box as="span" flex='1' textAlign='left' fontSize="1.4em" color="#02825D">
-            Nu au fost găsite Alergii
-          </Box>
-      </h2>)}
-  
-
-
-</Accordion>
-</Box>
+      {allergyData && allergyData.length > 0 ? 
+        allergyData.map((item, index) => (
+          <AccordionItem key={index}>
+            <h2>
+              <AccordionButton>
+                <Box as="span" flex='1' textAlign='left' fontSize="1.4em" color="#02825D">
+                  {item.allergyName} - {item.medicName} - {item.timestamp}
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={20}>
+              <Text>Denumirea: {item.allergyName}</Text>
+              <Text>Medicul responsabil: {item.medicName}</Text>
+              <Text>Data: {item.timestamp}</Text>
+              <Text>Descrierea: {item.description}</Text>
+            </AccordionPanel>
+          </AccordionItem>
+        )) : 
+        (<h2>
+            <Box as="span" flex='1' textAlign='left' fontSize="1.4em" color="#02825D">
+              Nu au fost găsite Alergii
+            </Box>
+        </h2>)}
+      </Accordion>
+      </Box>
     </SimpleGrid>
   )
 }

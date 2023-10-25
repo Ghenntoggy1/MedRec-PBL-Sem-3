@@ -10,7 +10,7 @@ public class BoalaCronicaReport {
     @Id
     @GeneratedValue
     private Long boalaCronicaReportId;
-    private String boalaCronicaReportName;
+    private String boalaCronicaName;
     private String medicName;
     private String description;
     private Timestamp timestamp;  // TODO FORMAT TIMESTAMP
@@ -26,12 +26,20 @@ public class BoalaCronicaReport {
     @Transient
     private Long medrecId;
 
-    public Long getAllergyReportId() {
+    public Long getBoalaCronicaReportId() {
         return boalaCronicaReportId;
     }
 
-    public void setAllergyReportId(Long allergyReportId) {
-        this.boalaCronicaReportId = allergyReportId;
+    public void setBoalaCronicaReportId(Long boalaCronicaReportId) {
+        this.boalaCronicaReportId = boalaCronicaReportId;
+    }
+
+    public String getBoalaCronicaName() {
+        return boalaCronicaName;
+    }
+
+    public void setBoalaCronicaName(String boalaCronicaName) {
+        this.boalaCronicaName = boalaCronicaName;
     }
 
     public String getMedicName() {
@@ -48,14 +56,6 @@ public class BoalaCronicaReport {
 
     public void setMedicalRecord(MedicalRecord medicalRecord) {
         this.medicalRecord = medicalRecord;
-    }
-
-    public String getAllergyName() {
-        return boalaCronicaReportName;
-    }
-
-    public void setAllergyName(String allergyName) {
-        this.boalaCronicaReportName = allergyName;
     }
 
     public String getDescription() {

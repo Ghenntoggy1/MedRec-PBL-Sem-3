@@ -53,6 +53,16 @@ export const data = {
             },
         });
         return response;
+    },
+
+    fetchBoalaCronicaReports: async (idnp) => {
+        const response = await axios.post(`${apiUrl}/api/getBoalaCronicaReportFront`, { idnp }, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+        });
+        return response;
     }
 };
 
