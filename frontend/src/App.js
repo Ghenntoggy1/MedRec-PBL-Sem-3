@@ -12,6 +12,7 @@ import Operatii from './pages/Operatii';
 import Prescriptii from './pages/Prescriptii';
 import Vaccini from './pages/Vaccini';
 import IstorieTotala from './pages/IstoriaTotala';
+import ProgramarePacient from './pages/ProgramarePacient';
 
 
 
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
 
     <Route path="/" exact element={<RootLayout />} >
       <Route index element={<Pacient />} />
+      <Route path="programare" element={<ProgramarePacient/>}/>
       <Route path="analize" element={<Analize/>}/>
       <Route path="boli_cronice" element={<BoliCronice/>}/>
       <Route path="alergii" element={<Alergii/>}/>
