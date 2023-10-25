@@ -38,7 +38,7 @@ export default function Alergii(){
                 <pre>{JSON.stringify(response.data, null, 2)}</pre>
             </div>
         )} */}
-    {allergyData ? 
+    {allergyData && allergyData.length > 0 ? 
       allergyData.map((item, index) => (
         <AccordionItem key={index}>
           <h2>

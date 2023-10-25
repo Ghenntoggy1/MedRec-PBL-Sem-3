@@ -37,10 +37,10 @@ public class MedicalRecordController {
             Patient patient = patientRepository.findByidnp(medicalRecord.getPatientIdnp());
             if (patient != null) {
                 medicalRecord.setPatient(patient);
-                savedMedicalRecords.add(medicalRecordRepository.save(medicalRecord));
+                savedMedicalRecords.add(medicalRecord);
             }
         }
-        return savedMedicalRecords;
+        return medicalRecordRepository.saveAll(savedMedicalRecords);
     }
 
     @GetMapping("/getMedicalRecords")
