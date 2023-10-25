@@ -3,7 +3,7 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import Sidebar from "../components/Sidebar";
 import SidebarDoctor from "../components/SidebarDoctor";
 
-export default function RootLayout(){
+export default function RootLayoutDoctor(){
     return(
         <Grid templateColumns="repeat(6, 1fr)">
             <GridItem
@@ -13,7 +13,7 @@ export default function RootLayout(){
             minHeight={{lg: "100hv"}}
             p={{base: "20px", lg: "30px"}}
             >
-            <Sidebar/>
+            <SidebarDoctor/>
             </GridItem>
             <GridItem
             as= "main"
