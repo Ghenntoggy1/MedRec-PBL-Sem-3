@@ -10,7 +10,6 @@ public class Institution {
     @GeneratedValue
     private Long institutionId;
     private String institutionName;
-
     @Transient
     private Long medrecId;
 
@@ -45,13 +44,6 @@ public class Institution {
             }
         }
     }
-
-//    public void setPatient(Patient patient) {
-//        this.patient = patient;
-//        if (patient != null) {
-//            patient.setMedicalRecord(this);
-//        }
-//    }
 
     public Long getMedrecId() {
         return medrecId;

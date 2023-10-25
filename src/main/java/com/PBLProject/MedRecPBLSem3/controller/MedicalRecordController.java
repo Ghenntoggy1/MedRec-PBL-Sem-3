@@ -1,5 +1,6 @@
 package com.PBLProject.MedRecPBLSem3.controller;
 
+import com.PBLProject.MedRecPBLSem3.models.Institution;
 import com.PBLProject.MedRecPBLSem3.models.MedicalRecord;
 import com.PBLProject.MedRecPBLSem3.models.Patient;
 import com.PBLProject.MedRecPBLSem3.repository.MedicalRecordRepository;
@@ -56,4 +57,32 @@ public class MedicalRecordController {
             return null;
         }
     }
+
+//    @PostMapping("/addMedicalRecord")
+//    MedicalRecord addMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
+//        Institution existingInstitution = institutionRepository.findByInstitutionName(institution.getInstitutionName());
+//        if (existingInstitution != null) {
+//            List<MedicalRecord> medicalRecords = existingInstitution.getMedicalRecords();
+//            MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(institution.getMedrecId());
+//            if (medicalRecord != null) {
+//                if (!medicalRecords.contains(medicalRecord)) {
+//                    medicalRecords.add(medicalRecord);
+//                    existingInstitution.setMedicalRecords(medicalRecords);
+//                    return institutionRepository.save(existingInstitution);
+//                }
+//            }
+//        } else {
+//            List<MedicalRecord> medicalRecords = new ArrayList<>();
+//            MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(institution.getMedrecId());
+//            if (medicalRecord != null) {
+//                medicalRecords.add(medicalRecord);
+//                institution.setMedicalRecords(medicalRecords);
+//                return institutionRepository.save(institution);
+//            }
+//        }
+//        Institution institution1 = new Institution();
+//        institution1.setInstitutionName(institution.getInstitutionName());
+//        institution1.setMedicalRecords(new ArrayList<MedicalRecord>());
+//        return institutionRepository.save(institution1);
+//    }
 }

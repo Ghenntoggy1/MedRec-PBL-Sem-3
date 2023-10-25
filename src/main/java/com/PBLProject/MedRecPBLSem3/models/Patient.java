@@ -91,7 +91,6 @@ public class Patient {
     public void setDateOfBirth(String dateOfBirthString) {
         try {
             SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            SimpleDateFormat outputDateFormat = new SimpleDateFormat("dd-MM-yyyy");
             this.dateOfBirth = inputDateFormat.parse(dateOfBirthString);
             calculateAge();
         } catch (Exception e) {
@@ -187,11 +186,4 @@ public class Patient {
         this.insuranceNumber = insuranceNumber;
     }
 
-    public String getFormattedDateOfBirth() {
-        if (dateOfBirth != null) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-            return dateFormat.format(dateOfBirth);
-        }
-        return null;
-    }
 }

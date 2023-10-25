@@ -3,19 +3,23 @@ package com.PBLProject.MedRecPBLSem3.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class MedicalRecord {
     @Id
     @GeneratedValue
     private Long medrecId;
-//    private Long institutionId;
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_institution_id", referencedColumnName = "institutionId")
     private Institution institution;
-    private Long diagnosisReportId;
+    @OneToMany(mappedBy = "medicalRecord")
+    private List<AllergyReport> allergyReports;
     @Transient
     private Long patientIdnp;
+    @Transient
+    private Long allergyReportId;
     @OneToOne(mappedBy = "medicalRecord")
     private Patient patient;
 
@@ -27,14 +31,6 @@ public class MedicalRecord {
         this.medrecId = medrecId;
     }
 
-//    public Long getInstitutionId() {
-//        return institutionId;
-//    }
-//
-//    public void setInstitutionId(Long institutionId) {
-//        this.institutionId = institutionId;
-//    }
-
     public Institution getInstitution() {
         return institution;
     }
@@ -43,12 +39,17 @@ public class MedicalRecord {
         this.institution = institution;
     }
 
-    public Long getDiagnosisReportId() {
-        return diagnosisReportId;
+    public List<AllergyReport> getAllergyReports() {
+        return allergyReports;
     }
 
-    public void setDiagnosisReportId(Long diagnosisReportId) {
-        this.diagnosisReportId = diagnosisReportId;
+    public void setAllergyReports(List<AllergyReport> allergyReports) {
+        this.allergyReports = allergyReports;
+        if (allergyReports != null) {
+            for (AllergyReport allergyReport : allergyReports) {
+                allergyReport.setMedicalRecord(this);
+            }
+        }
     }
 
     public Patient getPatient() {
@@ -69,4 +70,13 @@ public class MedicalRecord {
     public void setPatientIdnp(Long patientIdnp) {
         this.patientIdnp = patientIdnp;
     }
+
+    public Long getAllergyReportId() {
+        return allergyReportId;
+    }
+
+    public void setAllergyReportId(Long allergyReportId) {
+        this.allergyReportId = allergyReportId;
+    }
+
 }

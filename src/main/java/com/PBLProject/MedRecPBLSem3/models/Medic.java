@@ -1,9 +1,6 @@
 package com.PBLProject.MedRecPBLSem3.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 
 import java.time.ZoneId;
 import java.util.Date;
@@ -30,6 +27,8 @@ public class Medic {
     private int apartmentNumber;
     private String postalCode;
     private String speciality;
+//    @OneToOne(mappedBy = "medic")
+//    private AllergyReport allergyReport;
 
     private void calculateAge() {
         if (dateOfBirth != null) {
