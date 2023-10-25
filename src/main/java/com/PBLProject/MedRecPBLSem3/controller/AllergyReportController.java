@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -48,7 +49,6 @@ public class AllergyReportController {
     @PostMapping("/addAllergyReport")
     AllergyReport newAllergyReport(@RequestBody AllergyReport allergyReport) {
         MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(allergyReport.getMedrecId());
-        //System.out.println("MedRec: " + medicalRecord.getPatientIdnp());
         if (medicalRecord != null) {
             allergyReport.setMedicalRecord(medicalRecord);
             return allergyReportRepository.save(allergyReport);
@@ -56,17 +56,17 @@ public class AllergyReportController {
             return null;
         }
     }
-//
-//    @PostMapping("/addAllergyReports")
-//    List<AllergyReport> newAllergyReports(@RequestBody List<AllergyReport> allergyReports) {
-//        List<AllergyReport> savedAllergyReports = new ArrayList<>();
-//        for (AllergyReport allergyReport : allergyReports) {
-//            MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(allergyReport.getMedrecId());
-//            if (medicalRecord != null) {
-//                allergyReport.setMedicalRecord(medicalRecord);
-//                savedAllergyReports.add(allergyReportRepository.save(allergyReport));
-//            }
-//        }
-//        return savedAllergyReports;
-//    }
+
+    @PostMapping("/addAllergyReports")
+    List<AllergyReport> newAllergyReports(@RequestBody List<AllergyReport> allergyReports) {
+        List<AllergyReport> savedAllergyReports = new ArrayList<>();
+        for (AllergyReport allergyReport : allergyReports) {
+            MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(allergyReport.getMedrecId());
+            if (medicalRecord != null) {
+                allergyReport.setMedicalRecord(medicalRecord);
+                savedAllergyReports.add(allergyReportRepository.save(allergyReport));
+            }
+        }
+        return savedAllergyReports;
+    }
 }
