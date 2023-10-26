@@ -52,37 +52,37 @@ export default function SidebarDoctor(){
       </ListItem>
     
       <ListItem>
-        <NavLink to="/boli_cronice"style={isActive("/boli_cronice") ? activeLinkStyle : {}}>
+        <NavLink to="/boli_cronice_doctor"style={isActive("/boli_cronice_doctor") ? activeLinkStyle : {}}>
           Boli cronice
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink to="/alergii"style={isActive("/alergii") ? activeLinkStyle : {}}>
+        <NavLink to="/alergii_doctor"style={isActive("/alergii_doctor") ? activeLinkStyle : {}}>
           Alergii
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink to="/operatii"style={isActive("/operatii") ? activeLinkStyle : {}}>
+        <NavLink to="/operatii_doctor"style={isActive("/operatii_doctor") ? activeLinkStyle : {}}>
           Operatii
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink to="/prescriptii"style={isActive("/prescriptii") ? activeLinkStyle : {}}>
+        <NavLink to="/prescriptii_doctor"style={isActive("/prescriptii_doctor") ? activeLinkStyle : {}}>
           Prescriptii
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink to="/diagnoze"style={isActive("/diagnoze") ? activeLinkStyle : {}}>
+        <NavLink to="/diagnoze_doctor"style={isActive("/diagnoze_doctor") ? activeLinkStyle : {}}>
           Diagnoze
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink to="/vaccini"style={isActive("/vaccini") ? activeLinkStyle : {}}>
+        <NavLink to="/vaccini_doctor"style={isActive("/vaccini_doctor") ? activeLinkStyle : {}}>
           Vaccini
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink to="/istorie_totala"style={isActive("/istorie_totala") ? activeLinkStyle : {}}>
+        <NavLink to="/istorie_totala_doctor"style={isActive("/istorie_totala_doctor") ? activeLinkStyle : {}}>
           Istoria totala
         </NavLink>
       </ListItem>

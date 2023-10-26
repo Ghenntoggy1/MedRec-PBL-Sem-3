@@ -1,3 +1,5 @@
+
+
 import { Box, Text, SimpleGrid, Heading, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel } from "@chakra-ui/react";
 
 export default function BoliCronice(){
@@ -29,6 +31,8 @@ export default function BoliCronice(){
     </SimpleGrid>
   )
 }
+
+
 
 // import React from 'react';
 // import CustomAccordionItem from './CustomAccordionItem'; // Adjust the import path based on your project structure
