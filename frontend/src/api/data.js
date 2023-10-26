@@ -63,6 +63,16 @@ export const data = {
             },
         });
         return response;
+    },
+
+    fetchAnalizaReports: async (idnp) => {
+        const response = await axios.post(`${apiUrl}/api/getAnalizaReportFront`, { idnp }, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+        });
+        return response;
     }
 };
 

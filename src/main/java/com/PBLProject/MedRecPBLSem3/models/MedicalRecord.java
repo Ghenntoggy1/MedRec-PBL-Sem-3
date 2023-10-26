@@ -18,11 +18,16 @@ public class MedicalRecord {
     private List<AllergyReport> allergyReports;
     @OneToMany(mappedBy = "medicalRecord")
     private List<BoalaCronicaReport> boalaCronicaReports;
+    @OneToMany(mappedBy = "medicalRecord")
+    private List<AnalizaReport> analizaReports;
     @Transient
     private Long patientIdnp;
     @Transient
     private Long allergyReportId;
-    @Transient Long boalaCronicaReportId;
+    @Transient
+    Long boalaCronicaReportId;
+    @Transient
+    Long analizaReportId;
     @OneToOne(mappedBy = "medicalRecord")
     private Patient patient;
 
@@ -96,5 +101,21 @@ public class MedicalRecord {
 
     public void setBoalaCronicaReportId(Long boalaCronicaReportId) {
         this.boalaCronicaReportId = boalaCronicaReportId;
+    }
+
+    public List<AnalizaReport> getAnalizaReports() {
+        return analizaReports;
+    }
+
+    public void setAnalizaReports(List<AnalizaReport> analizaReports) {
+        this.analizaReports = analizaReports;
+    }
+
+    public Long getAnalizaReportId() {
+        return analizaReportId;
+    }
+
+    public void setAnalizaReportId(Long analizaReportId) {
+        this.analizaReportId = analizaReportId;
     }
 }
