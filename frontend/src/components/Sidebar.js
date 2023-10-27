@@ -94,6 +94,11 @@ export default function Sidebar() {
           Istoria totala
         </NavLink>
       </ListItem>
+      <ListItem>
+        <NavLink to="/" style={isActive("/") ? activeLinkStyle : {}}>
+          Delogare
+        </NavLink>
+      </ListItem>
     </List>
   );
 }
