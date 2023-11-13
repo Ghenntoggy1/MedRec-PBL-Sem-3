@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class InstitutionController {
@@ -48,35 +50,33 @@ public class InstitutionController {
         return institutionRepository.save(institution1);
     }
 
-//    @PostMapping("/addInstitutions")
-//    List<Institution> addInstitutions(@RequestBody List<Institution> institutions) {
-//        List<Institution> savedInstitutions = new ArrayList<>();
-//        for (Institution institution : institutions) {
-//            Institution existingInstitution = institutionRepository.findByInstitutionName(institution.getInstitutionName());
-//            if (existingInstitution != null) {
-//                List<MedicalRecord> medicalRecords = existingInstitution.getMedicalRecords();
-//                MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(institution.getMedrecId());
-//                if (medicalRecord != null) {
-//                    if (!medicalRecords.contains(medicalRecord)) {
-//                        medicalRecords.add(medicalRecord);
-//                        existingInstitution.setMedicalRecords(medicalRecords);
-//                        savedInstitutions.add(existingInstitution);
-//                    }
-//                }
-//            } else {
-//                List<MedicalRecord> medicalRecords = new ArrayList<>();
-//                MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(institution.getMedrecId());
-//                if (medicalRecord != null) {
-//                    medicalRecords.add(medicalRecord);
-//                    institution.setMedicalRecords(medicalRecords);
-//                    savedInstitutions.add(institution);
-//                }
-//            }
-//            Institution institution1 = new Institution();
-//            institution1.setInstitutionName(institution.getInstitutionName());
-//            institution1.setMedicalRecords(new ArrayList<MedicalRecord>());
-//            savedInstitutions.add(institution1);
-//        }
-//        return institutionRepository.saveAll(savedInstitutions);
-//    }
+    @PostMapping("/addInstitutions")
+    List<Institution> addInstitutions(@RequestBody List<Institution> institutions) {
+        List<Institution> savedInstitutions = new ArrayList<>();
+        Map<String, Institution> existingInstitutionsMap = new HashMap<>();
+        for (Institution institution : institutions) {
+            String institutionName = institution.getInstitutionName();
+            Institution existingInstitution = existingInstitutionsMap.get(institutionName);
+            if (existingInstitution == null) {
+                List<MedicalRecord> medicalRecords = new ArrayList<>();
+                MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(institution.getMedrecId());
+                if (medicalRecord != null) {
+                    medicalRecords.add(medicalRecord);
+                    institution.setMedicalRecords(medicalRecords);
+                    savedInstitutions.add(institution);
+                    existingInstitutionsMap.put(institutionName, institution);
+                }
+            } else {
+                List<MedicalRecord> medicalRecords = existingInstitution.getMedicalRecords();
+                MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(institution.getMedrecId());
+                if (medicalRecord != null && !medicalRecords.contains(medicalRecord)) {
+                    medicalRecords.add(medicalRecord);
+                    existingInstitution.setMedicalRecords(medicalRecords);
+                    savedInstitutions.add(existingInstitution);
+                }
+            }
+        }
+        return institutionRepository.saveAll(savedInstitutions);
+    }
+
 }
