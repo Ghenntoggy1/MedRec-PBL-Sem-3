@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { data } from "../api/data";
 
 export default function Pacient(){
-  const textStyle = { // Text color
+  const textStyle = {
     fontSize: "1.4em",
     textAlign:'left',
     color:"#02825D" ,
@@ -80,6 +80,9 @@ export default function Pacient(){
         <Text mb={2} >
           Fişa medicală: {medicalRecordData ? medicalRecordData.medrecId : 'N/A'}
         </Text>
+        <Text mb={2}>
+          Centrul Medical: {medicalRecordData ? medicalRecordData.institutionName : "N/A"}  {/* TODO institution name */}
+        </Text>
         <Text mb={2} >
           Vârsta: {patientData.age}
         </Text>
@@ -99,9 +102,8 @@ export default function Pacient(){
         <Text mb={2}>
           Contact: {patientData.contact}
         </Text>
-
       </div>
-   
+  
       </Box>
     </SimpleGrid>
   )

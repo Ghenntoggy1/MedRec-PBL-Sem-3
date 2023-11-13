@@ -16,7 +16,7 @@ export default function Analize(){
         if (response.status === 200) {
           setAnalizaData(response.data);
         } else {
-          console.error("Patient not found");
+          console.error("Patient Analysis not found!");
         }
       } catch (error) {
         console.error(error);
