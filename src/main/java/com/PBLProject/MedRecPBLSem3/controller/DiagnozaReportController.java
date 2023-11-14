@@ -1,11 +1,14 @@
 package com.PBLProject.MedRecPBLSem3.controller;
 
+import com.PBLProject.MedRecPBLSem3.forms.LoginForm;
 import com.PBLProject.MedRecPBLSem3.models.DiagnozaReport;
 import com.PBLProject.MedRecPBLSem3.models.MedicalRecord;
+import com.PBLProject.MedRecPBLSem3.models.Patient;
 import com.PBLProject.MedRecPBLSem3.repository.DiagnozaReportRepository;
 import com.PBLProject.MedRecPBLSem3.repository.MedicalRecordRepository;
 import com.PBLProject.MedRecPBLSem3.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -22,6 +25,20 @@ public class DiagnozaReportController {
 
     @Autowired
     PatientRepository patientRepository;
+
+    @PostMapping("/getDiagnozaReportFront")
+    public ResponseEntity<List<DiagnozaReport>> getDiagnozaReportByPatient(@RequestBody LoginForm loginForm) {
+        Patient patient = patientRepository.findByidnp(loginForm.idnp);
+        MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(patient.getMedicalRecord().getMedrecId());
+        List<DiagnozaReport> diagnozaReports;
+        if (medicalRecord != null) {
+            diagnozaReports = medicalRecord.getDiagnozaReports();
+            return ResponseEntity.ok(diagnozaReports);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @GetMapping("/getDiagnozaReports")
     List<DiagnozaReport> getDiagnozaReports() {

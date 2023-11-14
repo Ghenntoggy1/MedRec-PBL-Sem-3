@@ -140,4 +140,12 @@ public class MedicalRecord {
 //    public void setOperatieReportId(Long operatieReportId) {
 //        this.operatieReportId = operatieReportId;
 //    }
+
+    public List<DiagnozaReport> getDiagnozaReports() {
+        return diagnozaReports;
+    }
+
+    public void setDiagnozaReports(List<DiagnozaReport> diagnozaReports) {
+        this.diagnozaReports = diagnozaReports;
+    }
 }

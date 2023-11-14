@@ -83,6 +83,16 @@ export const data = {
             },
         });
         return response;
+    },
+
+    fetchDiagnozaReports: async(idnp) => {
+        const response = await axios.post(`${apiUrl}/api/getDiagnozaReportFront`, {idnp}, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+        });
+        return response;
     }
 };
 

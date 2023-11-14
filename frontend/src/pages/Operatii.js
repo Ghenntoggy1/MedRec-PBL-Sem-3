@@ -34,7 +34,7 @@ export default function Operatii(){
       <Accordion allowToggle>
         {operatieData && operatieData.length > 0 ?
         operatieData.map((item, index) => (
-          <AccordionItem>
+          <AccordionItem key={index}>
             <h2>
               <AccordionButton>
                 <Box as="span" flex='1' textAlign='left' fontSize= "1.4em"  color="#02825D">
