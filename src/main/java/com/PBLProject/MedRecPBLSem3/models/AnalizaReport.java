@@ -25,7 +25,6 @@ public class AnalizaReport {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_medical_record_id", referencedColumnName = "medrecId")
     private MedicalRecord medicalRecord;
-
     @Transient
     private Long medrecId;
 

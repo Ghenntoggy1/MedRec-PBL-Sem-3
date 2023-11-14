@@ -22,16 +22,18 @@ public class MedicalRecord {
     private List<AnalizaReport> analizaReports;
     @OneToMany(mappedBy = "medicalRecord")
     private List<OperatieReport> operatieReports;
+    @OneToMany(mappedBy = "medicalRecord")
+    private List<DiagnozaReport> diagnozaReports;
     @Transient
     private Long patientIdnp;
-    @Transient
-    private Long allergyReportId;
-    @Transient
-    Long boalaCronicaReportId;
-    @Transient
-    Long analizaReportId;
-    @Transient
-    Long operatieReportId;
+//    @Transient
+//    private Long allergyReportId;
+//    @Transient
+//    Long boalaCronicaReportId;
+//    @Transient
+//    Long analizaReportId;
+//    @Transient
+//    Long operatieReportId;
     @OneToOne(mappedBy = "medicalRecord")
     private Patient patient;
 
@@ -82,14 +84,14 @@ public class MedicalRecord {
     public void setPatientIdnp(Long patientIdnp) {
         this.patientIdnp = patientIdnp;
     }
-
-    public Long getAllergyReportId() {
-        return allergyReportId;
-    }
-
-    public void setAllergyReportId(Long allergyReportId) {
-        this.allergyReportId = allergyReportId;
-    }
+//
+//    public Long getAllergyReportId() {
+//        return allergyReportId;
+//    }
+//
+//    public void setAllergyReportId(Long allergyReportId) {
+//        this.allergyReportId = allergyReportId;
+//    }
 
     public List<BoalaCronicaReport> getBoalaCronicaReports() {
         return boalaCronicaReports;
@@ -99,13 +101,13 @@ public class MedicalRecord {
         this.boalaCronicaReports = boalaCronicaReports;
     }
 
-    public Long getBoalaCronicaReportId() {
-        return boalaCronicaReportId;
-    }
+//    public Long getBoalaCronicaReportId() {
+//        return boalaCronicaReportId;
+//    }
 
-    public void setBoalaCronicaReportId(Long boalaCronicaReportId) {
-        this.boalaCronicaReportId = boalaCronicaReportId;
-    }
+//    public void setBoalaCronicaReportId(Long boalaCronicaReportId) {
+//        this.boalaCronicaReportId = boalaCronicaReportId;
+//    }
 
     public List<AnalizaReport> getAnalizaReports() {
         return analizaReports;
@@ -115,13 +117,13 @@ public class MedicalRecord {
         this.analizaReports = analizaReports;
     }
 
-    public Long getAnalizaReportId() {
-        return analizaReportId;
-    }
+//    public Long getAnalizaReportId() {
+//        return analizaReportId;
+//    }
 
-    public void setAnalizaReportId(Long analizaReportId) {
-        this.analizaReportId = analizaReportId;
-    }
+//    public void setAnalizaReportId(Long analizaReportId) {
+//        this.analizaReportId = analizaReportId;
+//    }
 
     public List<OperatieReport> getOperatieReports() {
         return operatieReports;
@@ -131,11 +133,11 @@ public class MedicalRecord {
         this.operatieReports = operatieReports;
     }
 
-    public Long getOperatieReportId() {
-        return operatieReportId;
-    }
+//    public Long getOperatieReportId() {
+//        return operatieReportId;
+//    }
 
-    public void setOperatieReportId(Long operatieReportId) {
-        this.operatieReportId = operatieReportId;
-    }
+//    public void setOperatieReportId(Long operatieReportId) {
+//        this.operatieReportId = operatieReportId;
+//    }
 }
