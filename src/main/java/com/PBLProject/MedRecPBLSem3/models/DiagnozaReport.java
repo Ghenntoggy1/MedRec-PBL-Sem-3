@@ -1,9 +1,11 @@
 package com.PBLProject.MedRecPBLSem3.models;
 
+import com.PBLProject.MedRecPBLSem3.forms.PrescribedMedicineDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.Map;
 
 @Entity
 public class DiagnozaReport {
@@ -14,7 +16,12 @@ public class DiagnozaReport {
     private String description;
     private String medicName;
     private String conclusion;
-    private String prescribedMedicine;
+    @ElementCollection
+    @CollectionTable(name = "prescription")
+    @MapKeyColumn(name = "prescription_name")
+    @Column(name = "prescription_value")
+    private Map<String, PrescribedMedicineDetails> prescribedMedicine;
+//    private String prescribedMedicine;  // TODO table with prescription
     private String prescribedOperation;
     private Timestamp timestamp;
     @JsonIgnore
@@ -56,13 +63,13 @@ public class DiagnozaReport {
         this.conclusion = conclusion;
     }
 
-    public String getPrescribedMedicine() {
-        return prescribedMedicine;
-    }
+//    public String getPrescribedMedicine() {
+//        return prescribedMedicine;
+//    }
 
-    public void setPrescribedMedicine(String prescribedMedicine) {
-        this.prescribedMedicine = prescribedMedicine;
-    }
+//    public void setPrescribedMedicine(String prescribedMedicine) {
+//        this.prescribedMedicine = prescribedMedicine;
+//    }
 
     public String getPrescribedOperation() {
         return prescribedOperation;
@@ -102,5 +109,13 @@ public class DiagnozaReport {
 
     public void setMedicName(String medicName) {
         this.medicName = medicName;
+    }
+
+    public Map<String, PrescribedMedicineDetails> getPrescribedMedicine() {
+        return prescribedMedicine;
+    }
+
+    public void setPrescribedMedicine(Map<String, PrescribedMedicineDetails> prescribedMedicine) {
+        this.prescribedMedicine = prescribedMedicine;
     }
 }
