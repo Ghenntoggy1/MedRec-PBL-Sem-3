@@ -1,9 +1,12 @@
 package com.PBLProject.MedRecPBLSem3.controller;
 
+import com.PBLProject.MedRecPBLSem3.forms.LoginForm;
 import com.PBLProject.MedRecPBLSem3.models.Institution;
 import com.PBLProject.MedRecPBLSem3.models.MedicalRecord;
+import com.PBLProject.MedRecPBLSem3.models.Patient;
 import com.PBLProject.MedRecPBLSem3.repository.InstitutionRepository;
 import com.PBLProject.MedRecPBLSem3.repository.MedicalRecordRepository;
+import com.PBLProject.MedRecPBLSem3.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +24,9 @@ public class InstitutionController {
 
     @Autowired
     MedicalRecordRepository medicalRecordRepository;
+
+    @Autowired
+    PatientRepository patientRepository;
 
     @PostMapping("/addInstitution")
     Institution addInstitution(@RequestBody Institution institution) {
@@ -78,5 +84,6 @@ public class InstitutionController {
         }
         return institutionRepository.saveAll(savedInstitutions);
     }
+
 
 }

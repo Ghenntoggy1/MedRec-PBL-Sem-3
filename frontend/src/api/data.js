@@ -45,6 +45,16 @@ export const data = {
         return response;
     },
 
+    fetchInstitutionName: async (idnp) => {
+        const response = await axios.post(`${apiUrl}/getInstitutionByIdnp`, { idnp }, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+        });
+        return response;
+    },
+
     fetchAllergyReports: async (idnp) => {
         const response = await axios.post(`${apiUrl}/api/getAllergyReportFront`, { idnp }, {
             headers: {
@@ -77,6 +87,16 @@ export const data = {
 
     fetchOperatieReports: async(idnp) => {
         const response = await axios.post(`${apiUrl}/api/getOperatieReportFront`, {idnp}, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+        });
+        return response;
+    },
+
+    fetchDiagnozaReports: async(idnp) => {
+        const response = await axios.post(`${apiUrl}/api/getDiagnozaReportFront`, {idnp}, {
             headers: {
               "Content-Type": "application/json",
               "Access-Control-Allow-Origin": "*",
