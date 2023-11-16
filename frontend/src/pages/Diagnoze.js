@@ -47,8 +47,21 @@ export default function Diagnoze(){
                   <Text> Medicul responsabil: {item.medicName}</Text>
                   <Text> Data: {item.timestamp}</Text>
                   <Text> Descriere: {item.description}</Text>
-                  <Text> Operaţie Prescrisă: {item.prescribedOperation === null ? "Nu este prescrisă" : item.prescribedOperation}</Text>
-                  <Text> Medicament Prescris: {item.prescribedMedicine === null ? "Nu este prescris" : item.prescribedMedicine}</Text>
+                  <Text> Operaţie Prescrisă: {item.prescribedOperation === null ? ("Nu este prescrisă") : (item.prescribedOperation)}</Text>
+                  <Text> Medicament Prescris: {Object.keys(item.prescribedMedicine).length === 0 ? ("Nu este prescris") : (
+                    <Box>
+                      {Object.entries(item.prescribedMedicine).map(([medicineName, medicineDetails], medIndex) => (
+                        <Box key={medIndex} ml={4}>
+                          <Text> - {medicineName}:</Text>
+                          {Object.entries(medicineDetails).map(([property, value], propIndex) => (
+                            <Text key={propIndex} ml={6}>
+                              {property === 'timesPerDay' ? "Administrare (Per zi)" : property === 'dosage' ? "Dozaj" : property}: {value === null ? (" Nu este specificat") : ((' ') + value)}
+                            </Text>
+                          ))}
+                        </Box>
+                      ))}
+                    </Box>
+                  )}</Text>
                   <Text> Concluzia: {item.conclusion}</Text>
                 </AccordionPanel>
               </AccordionItem>

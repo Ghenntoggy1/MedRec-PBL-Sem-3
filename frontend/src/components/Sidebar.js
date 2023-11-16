@@ -90,11 +90,6 @@ export default function Sidebar() {
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink to={`/pacient/${idnp}/istorie_totala`} style={isActive(`/pacient/${idnp}/istorie_totala`) ? activeLinkStyle : {}}>
-          Istoria totala
-        </NavLink>
-      </ListItem>
-      <ListItem>
         <NavLink to="/" style={isActive("/") ? activeLinkStyle : {}}>
           Delogare
         </NavLink>

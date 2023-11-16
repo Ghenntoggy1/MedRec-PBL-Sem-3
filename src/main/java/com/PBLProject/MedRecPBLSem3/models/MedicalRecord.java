@@ -24,8 +24,8 @@ public class MedicalRecord {
     private List<OperatieReport> operatieReports;
     @OneToMany(mappedBy = "medicalRecord")
     private List<DiagnozaReport> diagnozaReports;
-    @Transient
-    private Long patientIdnp;
+//    @Transient
+//    private Long patientIdnp;
 //    @Transient
 //    private Long allergyReportId;
 //    @Transient
@@ -77,13 +77,13 @@ public class MedicalRecord {
         }
     }
 
-    public Long getPatientIdnp() {
-        return patientIdnp;
-    }
+//    public Long getPatientIdnp() {
+//        return patientIdnp;
+//    }
 
-    public void setPatientIdnp(Long patientIdnp) {
-        this.patientIdnp = patientIdnp;
-    }
+//    public void setPatientIdnp(Long patientIdnp) {
+//        this.patientIdnp = patientIdnp;
+//    }
 //
 //    public Long getAllergyReportId() {
 //        return allergyReportId;

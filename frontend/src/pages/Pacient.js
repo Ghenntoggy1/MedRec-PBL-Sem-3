@@ -17,6 +17,8 @@ export default function Pacient(){
 
   const [medicalRecordData, setMedicalRecordData] = useState(null);
 
+  const [institutionName, setInstitutionName] = useState(null);
+
   useEffect(() => {
     const fetchPatientData = async () => {
       try {
@@ -49,8 +51,21 @@ export default function Pacient(){
         console.error(error);
       }
     };
+    const fetchInstitutionName = async () => {
+      try {
+        const response = await data.fetchInstitutionName(idnp);
 
+        if (response.status === 200) {
+          setInstitutionName(response.data);
+        } else {
+          console.error("Institution Name not found");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
       fetchMedicalRecord();
+      fetchInstitutionName();
     }, [idnp]);
 
   if (!patientData) {
@@ -72,6 +87,9 @@ export default function Pacient(){
           Data nașterii: {patientData.dateOfBirth}
         </Text>
         <Text mb={2}>
+          IDNP: {patientData.idnp}
+        </Text>
+        <Text mb={2}>
           Numărul de asigurare: {patientData.insuranceNumber}
         </Text>
         <Text mb={2} >
@@ -81,7 +99,7 @@ export default function Pacient(){
           Fişa medicală: {medicalRecordData ? medicalRecordData.medrecId : 'N/A'}
         </Text>
         <Text mb={2}>
-          Centrul Medical: {medicalRecordData ? medicalRecordData.institutionName : "N/A"}  {/* TODO institution name */}
+          Centrul Medical: {institutionName ? institutionName : "N/A"}  {/* TODO institution name */}
         </Text>
         <Text mb={2} >
           Vârsta: {patientData.age}
@@ -95,9 +113,6 @@ export default function Pacient(){
         <Text mb={2}>
           Adresa: {'str. ' + patientData.streetName + ' ' + patientData.streetNumber
                         + ', ap.' + patientData.apartmentNumber + ' MD' + patientData.postalCode}
-        </Text>
-        <Text mb={2}>
-          IDNP: {patientData.idnp}
         </Text>
         <Text mb={2}>
           Contact: {patientData.contact}

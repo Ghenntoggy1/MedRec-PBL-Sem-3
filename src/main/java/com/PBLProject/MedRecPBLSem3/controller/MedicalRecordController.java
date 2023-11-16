@@ -1,5 +1,7 @@
 package com.PBLProject.MedRecPBLSem3.controller;
 
+import com.PBLProject.MedRecPBLSem3.forms.LoginForm;
+import com.PBLProject.MedRecPBLSem3.forms.MedicalRecordForm;
 import com.PBLProject.MedRecPBLSem3.models.Institution;
 import com.PBLProject.MedRecPBLSem3.models.MedicalRecord;
 import com.PBLProject.MedRecPBLSem3.models.Patient;
@@ -20,24 +22,27 @@ public class MedicalRecordController {
     PatientRepository patientRepository;
 
     @PostMapping("/addMedicalRecord")
-    MedicalRecord newMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
+    MedicalRecord newMedicalRecord(@RequestBody MedicalRecordForm medicalRecord) {
         Patient patient = patientRepository.findByidnp(medicalRecord.getPatientIdnp());
+        MedicalRecord medicalRecord1 = new MedicalRecord();
         if (patient != null) {
-            medicalRecord.setPatient(patient);
-            return medicalRecordRepository.save(medicalRecord);
+            medicalRecord1.setPatient(patient);
+            return medicalRecordRepository.save(medicalRecord1);
         } else {
             return null;
         }
     }
 
     @PostMapping("/addMedicalRecords")
-    List<MedicalRecord> newMedicalRecords(@RequestBody List<MedicalRecord> medicalRecords) {
+    List<MedicalRecord> newMedicalRecords(@RequestBody List<MedicalRecordForm> medicalRecords) {
         List<MedicalRecord> savedMedicalRecords = new ArrayList<>();
-        for (MedicalRecord medicalRecord : medicalRecords) {
+        MedicalRecord medicalRecord1;
+        for (MedicalRecordForm medicalRecord : medicalRecords) {
+            medicalRecord1 = new MedicalRecord();
             Patient patient = patientRepository.findByidnp(medicalRecord.getPatientIdnp());
             if (patient != null) {
-                medicalRecord.setPatient(patient);
-                savedMedicalRecords.add(medicalRecord);
+                medicalRecord1.setPatient(patient);
+                savedMedicalRecords.add(medicalRecord1);
             }
         }
         return medicalRecordRepository.saveAll(savedMedicalRecords);
@@ -55,6 +60,17 @@ public class MedicalRecordController {
             return medicalRecordRepository.findByPatient(patient);
         } else {
             return null;
+        }
+    }
+
+    @PostMapping("/getInstitutionByIdnp")
+    public String getInstitutionByIdnp(@RequestBody LoginForm loginForm) {
+        Patient patient = patientRepository.findByidnp(loginForm.idnp);
+        MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(patient.getMedicalRecord().getMedrecId());
+        if (medicalRecord.getInstitution() != null) {
+            return medicalRecord.getInstitution().getInstitutionName();
+        } else {
+            return "Necunoscută";
         }
     }
 
