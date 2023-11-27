@@ -19,10 +19,6 @@ public class BoalaCronicaReport {
     @JoinColumn(name = "fk_medical_record_id", referencedColumnName = "medrecId")
     private MedicalRecord medicalRecord;
 
-    public BoalaCronicaReport() {
-        this.timestamp = new Timestamp(System.currentTimeMillis());
-    }
-
     @Transient
     private Long medrecId;
 

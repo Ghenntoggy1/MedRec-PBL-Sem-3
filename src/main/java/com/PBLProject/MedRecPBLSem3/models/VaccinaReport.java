@@ -6,11 +6,11 @@ import jakarta.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-public class AllergyReport {
+public class VaccinaReport {
     @Id
     @GeneratedValue
-    private Long allergyReportId;
-    private String allergyName;
+    private Long vaccinaReportId;
+    private String vaccinaName;
     private String medicName;
     private String description;
     private Timestamp timestamp;  // TODO FORMAT TIMESTAMP
@@ -22,12 +22,20 @@ public class AllergyReport {
     @Transient
     private Long medrecId;
 
-    public Long getAllergyReportId() {
-        return allergyReportId;
+    public Long getVaccinaReportId() {
+        return vaccinaReportId;
     }
 
-    public void setAllergyReportId(Long allergyReportId) {
-        this.allergyReportId = allergyReportId;
+    public void setVaccinaReportId(Long vaccinaReportId) {
+        this.vaccinaReportId = vaccinaReportId;
+    }
+
+    public String getVaccinaName() {
+        return vaccinaName;
+    }
+
+    public void setVaccinaName(String vaccinaName) {
+        this.vaccinaName = vaccinaName;
     }
 
     public String getMedicName() {
@@ -36,22 +44,6 @@ public class AllergyReport {
 
     public void setMedicName(String medicName) {
         this.medicName = medicName;
-    }
-
-    public MedicalRecord getMedicalRecord() {
-        return medicalRecord;
-    }
-
-    public void setMedicalRecord(MedicalRecord medicalRecord) {
-        this.medicalRecord = medicalRecord;
-    }
-
-    public String getAllergyName() {
-        return allergyName;
-    }
-
-    public void setAllergyName(String allergyName) {
-        this.allergyName = allergyName;
     }
 
     public String getDescription() {
@@ -68,6 +60,14 @@ public class AllergyReport {
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public MedicalRecord getMedicalRecord() {
+        return medicalRecord;
+    }
+
+    public void setMedicalRecord(MedicalRecord medicalRecord) {
+        this.medicalRecord = medicalRecord;
     }
 
     public Long getMedrecId() {
