@@ -2,6 +2,7 @@ package com.PBLProject.MedRecPBLSem3.forms;
 
 import jakarta.persistence.Embeddable;
 
+
 @Embeddable
 public class PrescribedMedicineDetails {
     private String dosage;

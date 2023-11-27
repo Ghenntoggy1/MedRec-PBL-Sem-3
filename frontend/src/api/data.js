@@ -103,7 +103,17 @@ export const data = {
             },
         });
         return response;
-    }
+    },
+
+    fetchPrescriptionReports: async(idnp) => {
+        const response = await axios.post(`${apiUrl}/api/getPrescriptionsFront`, {idnp}, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+        });
+        return response;
+    },
 };
 
 

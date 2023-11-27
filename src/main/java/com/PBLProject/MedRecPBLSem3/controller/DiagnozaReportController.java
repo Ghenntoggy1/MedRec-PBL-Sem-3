@@ -1,6 +1,7 @@
 package com.PBLProject.MedRecPBLSem3.controller;
 
 import com.PBLProject.MedRecPBLSem3.forms.LoginForm;
+import com.PBLProject.MedRecPBLSem3.forms.PrescribedMedicineDetails;
 import com.PBLProject.MedRecPBLSem3.models.DiagnozaReport;
 import com.PBLProject.MedRecPBLSem3.models.MedicalRecord;
 import com.PBLProject.MedRecPBLSem3.models.Patient;
