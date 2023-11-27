@@ -26,6 +26,8 @@ public class MedicalRecord {
     private List<DiagnozaReport> diagnozaReports;
     @OneToOne(mappedBy = "medicalRecord")
     private Patient patient;
+    @OneToMany(mappedBy = "medicalRecord")
+    private List<VaccinaReport> vaccinaReports;
 
     public Long getMedrecId() {
         return medrecId;
@@ -97,5 +99,13 @@ public class MedicalRecord {
 
     public void setDiagnozaReports(List<DiagnozaReport> diagnozaReports) {
         this.diagnozaReports = diagnozaReports;
+    }
+
+    public List<VaccinaReport> getVaccinaReports() {
+        return vaccinaReports;
+    }
+
+    public void setVaccinaReports(List<VaccinaReport> vaccinaReports) {
+        this.vaccinaReports = vaccinaReports;
     }
 }
