@@ -24,16 +24,6 @@ public class MedicalRecord {
     private List<OperatieReport> operatieReports;
     @OneToMany(mappedBy = "medicalRecord")
     private List<DiagnozaReport> diagnozaReports;
-//    @Transient
-//    private Long patientIdnp;
-//    @Transient
-//    private Long allergyReportId;
-//    @Transient
-//    Long boalaCronicaReportId;
-//    @Transient
-//    Long analizaReportId;
-//    @Transient
-//    Long operatieReportId;
     @OneToOne(mappedBy = "medicalRecord")
     private Patient patient;
 
@@ -77,22 +67,6 @@ public class MedicalRecord {
         }
     }
 
-//    public Long getPatientIdnp() {
-//        return patientIdnp;
-//    }
-
-//    public void setPatientIdnp(Long patientIdnp) {
-//        this.patientIdnp = patientIdnp;
-//    }
-//
-//    public Long getAllergyReportId() {
-//        return allergyReportId;
-//    }
-//
-//    public void setAllergyReportId(Long allergyReportId) {
-//        this.allergyReportId = allergyReportId;
-//    }
-
     public List<BoalaCronicaReport> getBoalaCronicaReports() {
         return boalaCronicaReports;
     }
@@ -100,14 +74,6 @@ public class MedicalRecord {
     public void setBoalaCronicaReports(List<BoalaCronicaReport> boalaCronicaReports) {
         this.boalaCronicaReports = boalaCronicaReports;
     }
-
-//    public Long getBoalaCronicaReportId() {
-//        return boalaCronicaReportId;
-//    }
-
-//    public void setBoalaCronicaReportId(Long boalaCronicaReportId) {
-//        this.boalaCronicaReportId = boalaCronicaReportId;
-//    }
 
     public List<AnalizaReport> getAnalizaReports() {
         return analizaReports;
@@ -117,14 +83,6 @@ public class MedicalRecord {
         this.analizaReports = analizaReports;
     }
 
-//    public Long getAnalizaReportId() {
-//        return analizaReportId;
-//    }
-
-//    public void setAnalizaReportId(Long analizaReportId) {
-//        this.analizaReportId = analizaReportId;
-//    }
-
     public List<OperatieReport> getOperatieReports() {
         return operatieReports;
     }
@@ -132,14 +90,6 @@ public class MedicalRecord {
     public void setOperatieReports(List<OperatieReport> operatieReports) {
         this.operatieReports = operatieReports;
     }
-
-//    public Long getOperatieReportId() {
-//        return operatieReportId;
-//    }
-
-//    public void setOperatieReportId(Long operatieReportId) {
-//        this.operatieReportId = operatieReportId;
-//    }
 
     public List<DiagnozaReport> getDiagnozaReports() {
         return diagnozaReports;

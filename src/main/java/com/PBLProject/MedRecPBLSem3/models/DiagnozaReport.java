@@ -20,8 +20,7 @@ public class DiagnozaReport {
     @CollectionTable(name = "prescription")
     @MapKeyColumn(name = "prescription_name")
     @Column(name = "prescription_value")
-    private Map<String, PrescribedMedicineDetails> prescribedMedicine;
-//    private String prescribedMedicine;  // TODO table with prescription
+    private Map<String, PrescribedMedicineDetails> prescribedMedicine;  // TODO table with prescription
     private String prescribedOperation;
     private Timestamp timestamp;
     @JsonIgnore
@@ -62,14 +61,6 @@ public class DiagnozaReport {
     public void setConclusion(String conclusion) {
         this.conclusion = conclusion;
     }
-
-//    public String getPrescribedMedicine() {
-//        return prescribedMedicine;
-//    }
-
-//    public void setPrescribedMedicine(String prescribedMedicine) {
-//        this.prescribedMedicine = prescribedMedicine;
-//    }
 
     public String getPrescribedOperation() {
         return prescribedOperation;
