@@ -26,7 +26,7 @@ public class VaccinaReportController {
     @Autowired
     VaccinaReportRepository vaccinaReportRepository;
 
-    @PostMapping("/getVaccinaReportFront")
+    @PostMapping("/getVaccinaReportsFront")
     public ResponseEntity<List<VaccinaReport>> getVaccinaReportsByPatient(@RequestBody LoginForm loginForm) {
         Patient patient = patientRepository.findByidnp(loginForm.idnp);
         MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(patient.getMedicalRecord().getMedrecId());

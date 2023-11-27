@@ -114,6 +114,16 @@ export const data = {
         });
         return response;
     },
+
+    fetchVacciniReports: async(idnp) => {
+        const response = await axios.post(`${apiUrl}/api/getVaccinaReportsFront`, {idnp}, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+        });
+        return response;
+    },
 };
 
 
