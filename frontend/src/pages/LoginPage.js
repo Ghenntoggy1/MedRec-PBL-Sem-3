@@ -10,7 +10,7 @@ function Capitalize(str) {
 
 const LoginPage = () => {
     const { userType } = useParams();
-    const [idnp, setIdnp] = useState(''); // State for input value
+    const [idnp, setIdnp] = useState('');
     const [response, setResponse] = useState(null);
     const navigate = useNavigate();
 
@@ -44,12 +44,12 @@ const LoginPage = () => {
             setResponse(apiResponse);
             
             if (userType === 'pacient') {
-                if (apiResponse.status === 200) { // apiResponse.startsWith('LOGARE CA PACIENT CU SUCCES! ')
+                if (apiResponse.status === 200) {
                     navigate(`/pacient/${idnp}`);
                 }
             } else if (userType === 'medic') {
-                if (apiResponse.status === 200) { // apiResponse.startsWith('LOGARE CA PACIENT CU SUCCES! ')
-                    // navigate(`/medic/${idnp}`); // TODO medic page
+                if (apiResponse.status === 200) {
+                    navigate(`/medic/${idnp}`);
                 }
             }
 
@@ -90,11 +90,16 @@ const LoginPage = () => {
                         <Input
                         mt={0}
                         size="lg"
-                        type="email"
+                        type="search"
                         placeholder="INDP"
                         required
                         maxLength= '13'
                         onChange={handleIdnpChange}
+                        onKeyDown={(event) => {
+                            if (event.key === 'Enter') {
+                            handleFormSubmit(event);
+                            }
+                        }}
                         />
                     </GridItem>
                         <Button
@@ -127,12 +132,7 @@ const LoginPage = () => {
                         >
                             <Text>Logare ca {Capitalize(userType)}</Text>
                         </Button>
-                        {response && (
-                            <div>
-                                <p>API Response:</p>
-                                <pre>{JSON.stringify(response.data, null, 2)}</pre>
-                            </div>
-                        )}
+                        
                 </SimpleGrid>
             </div>
         </div>

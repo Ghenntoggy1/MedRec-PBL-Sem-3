@@ -35,6 +35,16 @@ export const data = {
           return response;
     },
 
+    fetchMedicInfo: async (idnp) => {
+        const response = await axios.post(`${apiUrl}/api/informatii_generale_medic`, { idnp }, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+          });
+          return response;
+    },
+
     fetchMedicalRecord: async (idnp) => {
         const response = await axios.post(`${apiUrl}/api/getMedicalRecord`, { idnp }, {
             headers: {

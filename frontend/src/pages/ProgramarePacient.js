@@ -1,7 +1,10 @@
 import React from "react";
 import { Box, FormControl, FormLabel, Input, Button, Heading } from "@chakra-ui/react";
+import { useParams } from "react-router-dom";
 
 const ProgramarePacient = () => {
+  const { idnp } = useParams();
+
   return (
     <Box  maxW="m" m="auto" p="15" textAlign="left">
         <Heading mb={10} size='md' color="#02825D" fontFamily="molengo"fontSize="2.5em" > Programare</Heading>

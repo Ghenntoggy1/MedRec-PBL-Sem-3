@@ -17,28 +17,25 @@ import Vaccini from './pages/Vaccini';
 import IstorieTotala from './pages/IstoriaTotala';
 import ProgramarePacient from './pages/ProgramarePacient';
 import RootLayoutDoctor from './layouts/RootLayoutDoctor';
+import AllergiiDoctor from './pages/AlergiiDoctor';
+import Doctor from './pages/Doctor';
+import SearchPage from './pages/SearchPage'
 
-
-
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    
-
-    <Route path="/" exact element={<RootLayoutDoctor />} >
-      <Route index element={<Pacient />} />
-      <Route path="programare" element={<ProgramarePacient/>}/>
-      <Route path="analize" element={<Analize/>}/>
-      <Route path="boli_cronice" element={<BoliCronice/>}/>
-      <Route path="alergii" element={<Alergii/>}/>
-      <Route path="operatii" element={<Operatii/>}/>
-      <Route path="prescriptii" element={<Prescriptii/>}/>
-      <Route path="diagnoze" element={<Diagnoze/>}/>
-      <Route path="vaccini" element={<Vaccini/>}/>
-      <Route path="istorie_totala" element={<IstorieTotala/>}/>
-    </Route>
-
+function PatientRoot({ idnp }) {
+  return (
+    <RootLayout>
+      <Outlet idnp={idnp} />
+    </RootLayout>
   )
-)
+}
+
+function DoctorRoot({ idnp }) {
+  return (
+    <RootLayoutDoctor>
+      <Outlet idnp={idnp} />
+    </RootLayoutDoctor>
+  )
+}
 
 function App() {
   return (
@@ -59,6 +56,12 @@ function App() {
             <Route path="diagnoze" element={<Diagnoze />} />
             <Route path="vaccini" element={<Vaccini />} />
             <Route path="istorie_totala" element={<IstorieTotala />} />
+          </Route>
+          <Route path="/medic/:idnp" element={<DoctorRoot />}>
+            <Route index element={<Doctor />} />
+            <Route path="cautare" element={<SearchPage />}>
+              <Route path="programare" element={<ProgramarePacient />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

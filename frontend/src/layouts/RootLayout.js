@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Grid, GridItem } from "@chakra-ui/react";
 import Sidebar from "../components/Sidebar";
-import SidebarDoctor from "../components/SidebarDoctor";
 
 export default function RootLayout(){
     return(
