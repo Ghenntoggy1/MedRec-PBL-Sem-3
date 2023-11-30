@@ -3,17 +3,17 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import Sidebar from "../components/Sidebar";
 import SidebarDoctor from "../components/SidebarDoctor";
 
-export default function RootLayout(){
+export default function RootLayoutDoctor(){
     return(
         <Grid templateColumns="repeat(6, 1fr)">
             <GridItem
-                as="aside"
-                colSpan={{ base: 6, lg: 2, xl: 1 }}
-                bgGradient="linear-gradient(to-t, #05C676, #4CBCAC)"
-                minHeight={{ lg: "100vh" }}
-                p={{ base: "20px", lg: "30px" }}
+            as="aside"
+            colSpan={{base: 6, lg: 2, xl: 1}}
+            bgGradient='linear-gradient(to-t, #05C676, #4CBCAC)'
+            minHeight={{lg: "100hv"}}
+            p={{base: "20px", lg: "30px"}}
             >
-            <Sidebar/>
+            <SidebarDoctor/>
             </GridItem>
             <GridItem
             as= "main"
