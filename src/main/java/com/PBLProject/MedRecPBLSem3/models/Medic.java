@@ -17,7 +17,6 @@ public class Medic {
     private String lastName;
     private Date dateOfBirth;
     private char gender;
-    @Transient
     private int age;
     private String contact;
     private String country;
