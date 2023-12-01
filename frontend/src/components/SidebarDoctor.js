@@ -60,6 +60,11 @@ export default function SidebarDoctor(){
        
       </ListItem>
       <ListItem>
+      <NavLink to={`/medic/${idnp}`} style={isActive(`/medic/${idnp}`) ? activeLinkStyle : {}}>
+          Profilul Meu
+        </NavLink>
+      </ListItem>
+      <ListItem>
       <NavLink to={`/medic/${idnp}/cautare`} style={isActive(`/medic/${idnp}/cautare`) ? activeLinkStyle : {}}>
           Caută Pacient
         </NavLink>
@@ -67,6 +72,11 @@ export default function SidebarDoctor(){
       <ListItem>
         <NavLink to={`/medic/${idnp}/programare`} style={isActive(`/medic/${idnp}/programare`) ? activeLinkStyle : {}}>
           Programare Pacient
+        </NavLink>
+      </ListItem>
+      <ListItem>
+        <NavLink to={`/medic/${idnp}/informatii_generale`} style={isActive(`/medic/${idnp}/informatii_generale`) ? activeLinkStyle : {}}>
+          Informații Generale
         </NavLink>
       </ListItem>
       <ListItem>

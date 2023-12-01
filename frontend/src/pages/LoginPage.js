@@ -29,6 +29,14 @@ const LoginPage = () => {
         setIdnp(event.target.value);
     };
 
+    const handleLetters = event => {
+        const result = event.target.value.replace(/\D/g, '');
+    
+        setValue(result);
+      };
+
+    const [value, setValue] = useState('');
+
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         
@@ -100,6 +108,8 @@ const LoginPage = () => {
                             handleFormSubmit(event);
                             }
                         }}
+                        value={value}
+                        onInput={handleLetters}
                         />
                     </GridItem>
                         <Button
