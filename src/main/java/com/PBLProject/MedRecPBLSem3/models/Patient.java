@@ -88,6 +88,10 @@ public class Patient {
         return dateFormat.format(dateOfBirth);
     }
 
+    public Date getDateOfBirthDate() {
+        return this.dateOfBirth;
+    }
+
     public void setDateOfBirth(String dateOfBirthString) {
         try {
             SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
