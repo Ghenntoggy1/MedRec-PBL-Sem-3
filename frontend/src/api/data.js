@@ -35,8 +35,8 @@ export const data = {
           return response;
     },
 
-    fetchPatients: async () => {
-        const response = await axios.get(`${apiUrl}/getPatients`, {
+    fetchPatientsForSearch: async () => {
+        const response = await axios.get(`${apiUrl}/getPatientsDTO`, {
             headers: {
               "Content-Type": "application/json",
               "Access-Control-Allow-Origin": "*",
