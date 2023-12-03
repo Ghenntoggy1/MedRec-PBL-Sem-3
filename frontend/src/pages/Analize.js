@@ -1,4 +1,4 @@
-import { Box, Text, SimpleGrid, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Accordion, Heading } from "@chakra-ui/react";
+import { Box, Text, SimpleGrid, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Accordion, Heading, UnorderedList, ListItem } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { data } from "../api/data";
 import { useEffect, useState } from "react";
@@ -51,7 +51,11 @@ export default function Analize(){
                 <Box>
                   <h2><Text>Valori:</Text></h2>
                   {Object.entries(item.values).map(([key, value], index) => (
-                    <Text key={index}>{key}: {value}</Text>
+                    <UnorderedList>
+                      <ListItem>
+                        <Text key={index}>{key}: {value}</Text>
+                      </ListItem>
+                    </UnorderedList>
                   ))}
                 </Box>
               }

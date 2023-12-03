@@ -77,7 +77,7 @@ export default function SearchPage() {
   };
 
   const handlePatientSelection = (patient) => {
-    navigate(`/medic/${idnp}/cautare/pat=${patient.idnp}`);
+    navigate(`/medic/${idnp}/pat=${patient.idnp}/informatii_generale`);
   };
 
   return (
@@ -116,7 +116,6 @@ export default function SearchPage() {
           <Text fontSize="lg">Căutare după Nume Prenume</Text>
         </Checkbox>
       </HStack>
-      {/* <HStack> */}
         <Input
           mt={0}
           size="lg"
@@ -127,37 +126,6 @@ export default function SearchPage() {
           onChange={handleInputChange}
           onInput={searchType === 'idnp' ? handleLetters : handleNumbers}
         />
-        {/* <Button
-          as={GridItem}
-          variant="solid"
-          colSpan={{
-          base: "auto",
-          lg: 2,
-          }}
-          width="20%"
-          size="lg"
-          type="submit"
-          colorScheme="brand"
-          cursor="pointer"
-          border= '3px solid'
-          borderColor= 'green.300'
-          backgroundImage= 'linear-gradient(to-l, #4CBCAC, #05C676)'
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          _hover={{
-              border: '3px solid',
-              borderColor: 'gray',
-              backgroundImage: 'linear-gradient(to-l, #4cbcac, #6dd694)',
-          }}
-          _active={{
-              transform: 'scale(0.95)',
-              borderColor: 'gray',
-          }}
-          // onClick={() => data.fetchPatientsByType(searchType)}  // TODO find patients by type
-        >
-          <Text>Caută</Text>
-        </Button> */}
-      {/* </HStack> */}
       { searchTerm && (
         <VStack paddingTop="5px">
           {filteredPatients.map(patient => (

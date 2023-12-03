@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Grid, GridItem } from "@chakra-ui/react";
-import SidebarDoctorPatSel from "../components/SidebarDoctorPatSel";
+import SidebarDoctor from "../components/SidebarDoctor";
 
 export default function RootLayout(){
     return(
@@ -12,7 +12,7 @@ export default function RootLayout(){
                 minHeight={{ lg: "100vh" }}
                 p={{ base: "20px", lg: "30px" }}
             >
-            <SidebarDoctorPatSel/>
+            <SidebarDoctor/>
             </GridItem>
             <GridItem
             as= "main"

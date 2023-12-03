@@ -4,7 +4,7 @@ import { NavLink, useLocation, useParams } from "react-router-dom"
 import { data } from "../api/data";
 
 
-export default function SidebarDoctorPatSel(){
+export default function SidebarDoctor(){
   const { idnp, pat_idnp } = useParams();
   const location = useLocation();
   const [medicData, setMedicData] = useState(null);
@@ -42,9 +42,13 @@ export default function SidebarDoctorPatSel(){
         console.error(error);
       }
     };
+
     fetchMedicData();
+    console.log(pat_idnp);
     if (pat_idnp != null) {
       fetchPatientData(pat_idnp.split("=")[1]);
+    } else {
+      console.log("Pat_idnp is Null ");
     }
   }, [idnp, pat_idnp]);
 
@@ -56,8 +60,6 @@ export default function SidebarDoctorPatSel(){
     borderBottom: " 1.8px solid white",
   };
 
-
-
   return(
     <List color="white" fontSize="1.2em" spacing={4}>
        <ListItem>
@@ -68,73 +70,109 @@ export default function SidebarDoctorPatSel(){
        <Text fontSize="2xl" fontWeight="bold" > 
         {medicData ? medicData.firstName + " " + medicData.lastName : "Loading..."}
        </Text>
+       <Divider my={5} borderColor="white" borderWidth="1.8px" />
        </div>
        </ListItem>
+       
        {patientData != null ? 
-       (<ListItem>
-          <Divider my={5} borderColor="white" borderWidth="1.8px" />
-            <div>
-              <Text fontSize="1xl" fontWeight="bold" > 
-                Pacient selectat: {patientData.firstName} {patientData.lastName}
-              </Text>
-            </div>
-          <Divider my={5} borderColor="white" borderWidth="1.8px" />
+       (
+       <>
+        <ListItem>
+          <NavLink
+            to={`/medic/${idnp}/pat=${patientData.idnp}`}
+            style={isActive(`/medic/${idnp}/pat=${patientData.idnp}`) ? activeLinkStyle : {}}
+          >
+            Profilul Meu
+          </NavLink>
         </ListItem>
-       ) : (<></>)}
-      <ListItem>
-      <NavLink to={`/medic/${idnp}`} style={isActive(`/medic/${idnp}`) ? activeLinkStyle : {}}>
-          Profilul Meu
-      </NavLink>
-      </ListItem>
-      <ListItem>
-      <NavLink to={`/medic/${idnp}/cautare`} style={isActive(`/medic/${idnp}/cautare`) ? activeLinkStyle : {}}>
-          Caută Pacient
-        </NavLink>
-      </ListItem>
+        <ListItem>
+          <NavLink 
+          to={`/medic/${idnp}/pat=${patientData.idnp}/cautare`} 
+          style={isActive(`/medic/${idnp}/pat=${patientData.idnp}/cautare`) ? activeLinkStyle : {}}
+          >
+            Caută Pacient
+          </NavLink>
+        </ListItem>
+      </>
+       ) : (
+       <>
+        <ListItem>
+          <NavLink
+            to={`/medic/${idnp}`}
+            style={isActive(`/medic/${idnp}`) ? activeLinkStyle : {}}
+          >
+            Profilul Meu
+          </NavLink>
+        </ListItem>
+        <ListItem>
+          <NavLink 
+          to={`/medic/${idnp}/cautare`} 
+          style={isActive(`/medic/${idnp}/cautare`) ? activeLinkStyle : {}}
+          >
+            Caută Pacient
+          </NavLink>
+        </ListItem>
+       </>)}
+       <ListItem>
+          <NavLink 
+          to={`/medic/${idnp}/adaugare`} 
+          style={isActive(`/medic/${idnp}/adaugare`) ? activeLinkStyle : {}}
+          >
+            Adaugă Pacient Nou
+          </NavLink>
+        </ListItem>
       {patientData != null ? (
       <>
       <ListItem>
-        <NavLink to={`/medic/${idnp}/programare`} style={isActive(`/medic/${idnp}/programare`) ? activeLinkStyle : {}}>
+          <Divider my={5} borderColor="white" borderWidth="1.8px" />
+          <div>
+            <Text fontSize="1xl" fontWeight="bold" > 
+              Pacient selectat: {patientData.firstName} {patientData.lastName}
+            </Text>
+          </div>
+      </ListItem>
+      <ListItem>
+        <NavLink to={`/medic/${idnp}/pat=${patientData.idnp}/programare`} style={isActive(`/medic/${idnp}/pat=${patientData.idnp}/programare`) ? activeLinkStyle : {}}>
           Programare Pacient
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink to={`/medic/${idnp}/informatii_generale`} style={isActive(`/medic/${idnp}/informatii_generale`) ? activeLinkStyle : {}}>
+        <NavLink to={`/medic/${idnp}/pat=${patientData.idnp}/informatii_generale`} style={isActive(`/medic/${idnp}/pat=${patientData.idnp}/informatii_generale`) ? activeLinkStyle : {}}>
           Informații Generale
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink to="/analize" style={isActive("/analize") ? activeLinkStyle : {}}>
+        <NavLink to={`/medic/${idnp}/pat=${patientData.idnp}/analiza`} style={isActive(`/medic/${idnp}/pat=${patientData.idnp}/analiza`) ? activeLinkStyle : {}}>
           Analize
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink to="/boli_cronice_doctor" style={isActive("/boli_cronice_doctor") ? activeLinkStyle : {}}>
+        <NavLink to={`/medic/${idnp}/pat=${patientData.idnp}/boli_cronice`} style={isActive(`/medic/${idnp}/pat=${patientData.idnp}/boli_cronice`) ? activeLinkStyle : {}}>
           Boli cronice
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink to="/alergii_doctor" style={isActive("/alergii_doctor") ? activeLinkStyle : {}}>
+        <NavLink to={`/medic/${idnp}/pat=${patientData.idnp}/alergii`} style={isActive(`/medic/${idnp}/pat=${patientData.idnp}/alergii`) ? activeLinkStyle : {}}>
           Alergii
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink to="/operatii_doctor" style={isActive("/operatii_doctor") ? activeLinkStyle : {}}>
+        <NavLink to={`/medic/${idnp}/pat=${patientData.idnp}/operatii`} style={isActive(`/medic/${idnp}/pat=${patientData.idnp}/operatii`) ? activeLinkStyle : {}}>
           Operatii
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink to="/prescriptii_doctor" style={isActive("/prescriptii_doctor") ? activeLinkStyle : {}}>
+        <NavLink to={`/medic/${idnp}/pat=${patientData.idnp}/prescriptii`} style={isActive(`/medic/${idnp}/pat=${patientData.idnp}/prescriptii`) ? activeLinkStyle : {}}>
           Prescriptii
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink to="/diagnoze_doctor" style={isActive("/diagnoze_doctor") ? activeLinkStyle : {}}>
+        <NavLink to={`/medic/${idnp}/pat=${patientData.idnp}/diagnoze`} style={isActive(`/medic/${idnp}/pat=${patientData.idnp}/diagnoze`) ? activeLinkStyle : {}}>
           Diagnoze
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink to="/vaccini_doctor" style={isActive("/vaccini_doctor") ? activeLinkStyle : {}}>
+        <NavLink to={`/medic/${idnp}/pat=${patientData.idnp}/vaccini`} style={isActive(`/medic/${idnp}/pat=${patientData.idnp}/vaccini`) ? activeLinkStyle : {}}>
           Vaccini
         </NavLink>
       </ListItem>

@@ -1,24 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box, FormControl, FormLabel, Input, Button, Heading } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
+import { data } from "../api/data";
 
 const ProgramarePacient = () => {
-  const { idnp } = useParams();
+  const { pat_idnp } = useParams();
+  const [patientData, setPatientData] = useState(null);
+  
+  useEffect(() => {
+    console.log("pat: " + pat_idnp);
+    const fetchPatientDTO = async () => {
+      try {
+        const response = await data.fetchPatientForSearch(pat_idnp);
+
+        console.log('API Response: ', response);
+
+        if (response.status === 200) {
+          setPatientData(response.data);
+        } else {
+          console.error("Patient not found");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPatientDTO();
+  }, []);
+
+  if (!patientData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Box  maxW="m" m="auto" p="15" textAlign="left">
-        <Heading mb={10} size='md' color="#02825D" fontFamily="molengo"fontSize="2.5em" > Programare</Heading>
+        <Heading mb={10} size='md' color="#02825D" fontSize="2.5em" > Programare</Heading>
       <FormControl mb="15">
-        <FormLabel>Nume</FormLabel>
-        <Input placeholder="Nume" />
+        <FormLabel>Nume: {patientData.fullName}</FormLabel>
+        <Input 
+        readOnly={true} 
+        placeholder="Nume" />
       </FormControl>
       <FormControl mb="4">
         <FormLabel>Prenume</FormLabel>
         <Input placeholder="Prenume" />
-      </FormControl>
-      <FormControl mb="4">
-        <FormLabel>Medic de familie</FormLabel>
-        <Input placeholder="Nume, Prenume" />
       </FormControl>
       <FormControl mb="4">
         <FormLabel>Instituția medicală</FormLabel>

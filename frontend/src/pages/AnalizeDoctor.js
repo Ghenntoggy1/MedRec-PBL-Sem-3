@@ -1,65 +1,78 @@
-import { Box, Text, SimpleGrid, Heading, Accordion, AccordionItem, AccordionButton, AccordionIcon, Button, Input, AccordionPanel } from "@chakra-ui/react";
+import { Box, Text, SimpleGrid, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Accordion, Heading, Button, Input, ListItem, UnorderedList } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { data } from "../api/data";
 import { useEffect, useState } from "react";
 
-export default function BoliCroniceDoctor(){
+export default function AnalizeDoctor(){
   const { pat_idnp } = useParams();
 
-  const [boliCroniceData, setBoliCroniceData] = useState(null);
+  const [analizaData, setAnalizaData] = useState(null);
 
   useEffect(() => {
-    const fetchBoliCroniceData = async () => {
+    const fetchAnalizaData = async () => {
       try {
-        const response = await data.fetchBoalaCronicaReports(pat_idnp.split("=")[1]);
+        const response = await data.fetchAnalizaReports(pat_idnp.split('=')[1]);
         console.log('API Response:', response);
         if (response.status === 200) {
-          setBoliCroniceData(response.data);
+          setAnalizaData(response.data);
         } else {
-          console.error("Patient not found");
+          console.error("Patient Analysis not found!");
         }
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchBoliCroniceData();
-    }, [pat_idnp]);
+    fetchAnalizaData();
+  }, [pat_idnp]);
 
   return(
     <SimpleGrid columns={2} spacing={10} minChildWidth="250px" height="700px">
     <Box>
-      <Heading mb={10} size='md' color="#02825D" fontSize="2.5em" > Boli Cronice</Heading>
+      <Heading mb={10} size='md' color="#02825D" fontSize="2.5em" > Analize</Heading>
       <Accordion allowToggle>
-        {boliCroniceData && boliCroniceData.length > 0 ? 
-        boliCroniceData.map((item, index) => (
+      {analizaData && analizaData.length > 0 ? 
+        analizaData.map((item, index) => (
           <AccordionItem key={index}>
             <h2>
               <AccordionButton>
                 <Box as="span" flex='1' textAlign='left' fontSize="1.4em" color="#02825D">
-                  {item.boalaCronicaName} - {item.medicName} - {item.timestamp}
+                  {item.analizaName} - {item.medicName} - {item.labName} - {item.timestamp}
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
             </h2>
             <AccordionPanel pb={20}>
-              <Text>Denumirea: {item.boalaCronicaName}</Text>
+              <Text>Denumirea: {item.analizaName}</Text>
               <Text>Medicul responsabil: {item.medicName}</Text>
+              <Text>Laboratorul: {item.labName}</Text>
               <Text>Data: {item.timestamp}</Text>
+              {item.values && Object.keys(item.values).length > 0 &&
+                <Box>
+                  <h2><Text>Valori:</Text></h2>
+                  {Object.entries(item.values).map(([key, value], index) => (
+                    <UnorderedList>
+                        <ListItem>
+                            <Text key={index}>{key}: {value}</Text>
+                        </ListItem>
+                    </UnorderedList>
+                  ))}
+                </Box>
+              }
               <Text>Descrierea: {item.description}</Text>
             </AccordionPanel>
           </AccordionItem>
         )) : 
         (<h2>
             <Box as="span" flex='1' textAlign='left' fontSize="1.4em" color="#02825D">
-              Nu au fost găsite Boli Cronice
+              Nu au fost găsite Alergii
             </Box>
         </h2>)}
         <AccordionItem>
             <h2>
               <AccordionButton color="#008000"> 
                 <Box as="span" flex='1' textAlign='left' fontSize= "1.4em" color="#02825D">
-                  Adaugă Boală Cronică
+                  Adaugă Analiză
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
@@ -89,12 +102,10 @@ export default function BoliCroniceDoctor(){
             </AccordionPanel>
           </AccordionItem>
       </Accordion>
-      </Box>
+    </Box>
     </SimpleGrid>
   )
 }
-
-
 
 // import React from 'react';
 // import CustomAccordionItem from './CustomAccordionItem'; // Adjust the import path based on your project structure
@@ -104,7 +115,7 @@ export default function BoliCroniceDoctor(){
 //   // ... array of objects containing denumirea, mediculResponsabil, data, and descrierea properties
 // ];
 
-// const BoliCronice = () => {
+// const Analize = () => {
 //   return (
 //     <Accordion allowToggle>
 //       {dataFromDatabase.map((item, index) => (

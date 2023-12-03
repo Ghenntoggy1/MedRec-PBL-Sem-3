@@ -5,10 +5,7 @@ import com.PBLProject.MedRecPBLSem3.models.Patient;
 import com.PBLProject.MedRecPBLSem3.repository.PatientRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +31,17 @@ public class PatientController {
     @GetMapping("/getPatientByIdnp")
     public Patient getPatientByIdnp(Long idnp) {
         return patientRepository.findByidnp(idnp);
+    }
+
+    @GetMapping("/getPatientDTO")
+    public PatientsDTO getPatientDTO(@RequestParam Long idnp) {
+
+        Patient patient = patientRepository.findByidnp(idnp);
+        PatientsDTO patientDTO = new PatientsDTO();
+        patientDTO.setFullName(patient.getFirstName() + " " + patient.getLastName());
+        patientDTO.setDateOfBirth(patient.getDateOfBirth());
+        BeanUtils.copyProperties(patient, patientDTO);
+        return patientDTO;
     }
 
     @GetMapping("/getPatientsDTO")
