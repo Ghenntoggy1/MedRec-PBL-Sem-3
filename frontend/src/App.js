@@ -20,6 +20,7 @@ import RootLayoutDoctor from './layouts/RootLayoutDoctor';
 import AllergiiDoctor from './pages/AlergiiDoctor';
 import Doctor from './pages/Doctor';
 import SearchPage from './pages/SearchPage'
+import RootLayoutDoctorPatSel from './layouts/RootLayoutDoctorPatSel';
 
 function PatientRoot({ idnp }) {
   return (
@@ -34,6 +35,14 @@ function DoctorRoot({ idnp }) {
     <RootLayoutDoctor>
       <Outlet idnp={idnp} />
     </RootLayoutDoctor>
+  )
+}
+
+function DoctorRootPatSel({ idnp }) {
+  return (
+    <RootLayoutDoctorPatSel>
+      <Outlet idnp={idnp} />
+    </RootLayoutDoctorPatSel>
   )
 }
 
@@ -60,7 +69,7 @@ function App() {
           <Route path="/medic/:idnp" element={<DoctorRoot />}>
             <Route index element={<Doctor />} />
             <Route path="cautare" element={<SearchPage />}>
-              <Route path="programare" element={<ProgramarePacient />} />
+              <Route path=":pat_idnp" element={<SearchPage />} />
             </Route>
           </Route>
         </Routes>

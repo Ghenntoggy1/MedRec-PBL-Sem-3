@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { data } from '../api/data';
 import { HStack, Button, Checkbox, Input, VStack, Text } from '@chakra-ui/react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function SearchPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -9,6 +10,8 @@ export default function SearchPage() {
   const [filteredPatients, setFilteredPatients] = useState([]);
   const [message, setMessage] = useState('');
   const [value, setValue] = useState('');
+  const navigate = useNavigate();
+  const { idnp } = useParams();
 
   useEffect(() => {
     const fetchPatientsDTO = async () => {
@@ -71,6 +74,10 @@ export default function SearchPage() {
     } else {
       setMessage('');
     }
+  };
+
+  const handlePatientSelection = (patient) => {
+    navigate(`/medic/${idnp}/cautare/pat=${patient.idnp}`);
   };
 
   return (
@@ -177,7 +184,7 @@ export default function SearchPage() {
                 transform: 'scale(0.95)',
                 borderColor: 'gray',
             }}
-            // onClick={() => data.fetchPatientsByType(searchType)}  // TODO change page to patient related
+            onClick={() => handlePatientSelection(patient)}
             >
               Nume: {patient.fullName} - IDNP: {patient.idnp} - Vârsta: {patient.age} - Anul Nașterii: {patient.dateOfBirth} - Nr. Asigurare: {patient.insuranceNumber}
             </Button>
