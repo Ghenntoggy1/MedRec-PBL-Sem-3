@@ -13,6 +13,7 @@ const LoginPage = () => {
     const [idnp, setIdnp] = useState('');
     const [response, setResponse] = useState(null);
     const navigate = useNavigate();
+    const [status, setStatus] = useState('');
 
     let icon = null;
 
@@ -31,7 +32,7 @@ const LoginPage = () => {
 
     const handleLetters = event => {
         const result = event.target.value.replace(/\D/g, '');
-    
+        setStatus('');
         setValue(result);
       };
 
@@ -39,34 +40,37 @@ const LoginPage = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        
-        try {
-            let apiResponse;
-
-            if (userType === 'pacient') {
-                apiResponse = await data.CheckPacientId(idnp);
-            } else if (userType === 'medic') {
-                apiResponse = await data.CheckMedicId(idnp);
-            }
-            
-            setResponse(apiResponse);
-            
-            if (userType === 'pacient') {
-                if (apiResponse.status === 200) {
-                    navigate(`/pacient/${idnp}`);
+        if (idnp.length === 13) {
+            try {
+                let apiResponse;
+    
+                if (userType === 'pacient') {
+                    apiResponse = await data.CheckPacientId(idnp);
+                } else if (userType === 'medic') {
+                    apiResponse = await data.CheckMedicId(idnp);
                 }
-            } else if (userType === 'medic') {
-                if (apiResponse.status === 200) {
-                    navigate(`/medic/${idnp}`);
+                
+                setResponse(apiResponse);
+                
+                if (userType === 'pacient') {
+                    if (apiResponse.status === 200) {
+                        navigate(`/pacient/${idnp}`);
+                    }
+                } else if (userType === 'medic') {
+                    if (apiResponse.status === 200) {
+                        navigate(`/medic/${idnp}`);
+                    }
                 }
+    
+            } catch (error) {
+                setStatus('invalid');
+                console.error(error);
             }
-
-            
-        } catch (error) {
-            console.error(error);
+        }
+        else {
+            setStatus('notEnough');
         }
     };
-
 
     return(
         <div>
@@ -105,12 +109,31 @@ const LoginPage = () => {
                         onChange={handleIdnpChange}
                         onKeyDown={(event) => {
                             if (event.key === 'Enter') {
-                            handleFormSubmit(event);
+                                handleFormSubmit(event);
                             }
                         }}
                         value={value}
                         onInput={handleLetters}
+                        isInvalid={idnp.length > 0 && idnp.length < 13}
+                        errorBorderColor="#ff0000"
                         />
+                        {value.length > 0 && value.length < 13 ? (
+                            <Text mt={2} color="red">
+                                IDNP trebuie să fie exact 13 numere.
+                            </Text>
+                        ) : status === 'invalid' ? (
+                            <Text mt={2} color="red">
+                                IDNP greșit.
+                            </Text>
+                        ) : status === 'notEnough' ? (
+                            <Text mt={2} color="red">
+                                IDNP trebuie să fie exact 13 numere.
+                            </Text>
+                        ) : status === 'valid' && (
+                            <Text mt={2} color="red">
+                                IDNP valid.
+                            </Text>
+                        )}
                     </GridItem>
                         <Button
                             as={GridItem}
@@ -142,7 +165,6 @@ const LoginPage = () => {
                         >
                             <Text>Logare ca {Capitalize(userType)}</Text>
                         </Button>
-                        
                 </SimpleGrid>
             </div>
         </div>
