@@ -27,7 +27,8 @@ function StartPage() {
                 <Button 
                 marginBottom="20px" 
                 variant='ghost'
-                height='210px'
+                height='auto'
+                padding='20px'
                 border="3px solid transparent"
                 onMouseEnter={() => setIsPacientHovered(true)}
                 onMouseLeave={() => setIsPacientHovered(false)}
@@ -56,7 +57,8 @@ function StartPage() {
                 marginLeft='50px'
                 marginBottom="20px" 
                 variant='ghost'
-                height='210px'
+                height='auto'  // Set height to 'auto'
+                padding="20px"  // Adjust padding accordingly
                 border="3px solid transparent"
                 onMouseEnter={() => setIsMedicHovered(true)}
                 onMouseLeave={() => setIsMedicHovered(false)}
