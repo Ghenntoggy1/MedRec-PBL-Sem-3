@@ -1,17 +1,17 @@
-import { Box, Text, SimpleGrid, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Accordion, Heading, UnorderedList, ListItem } from "@chakra-ui/react";
+import { Box, Text, SimpleGrid, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Accordion, Heading, Button, Input, ListItem, UnorderedList } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { data } from "../api/data";
 import { useEffect, useState } from "react";
 
-export default function Analize(){
-  const { idnp } = useParams();
+export default function AnalizeDoctor(){
+  const { pat_idnp } = useParams();
 
   const [analizaData, setAnalizaData] = useState(null);
 
   useEffect(() => {
     const fetchAnalizaData = async () => {
       try {
-        const response = await data.fetchAnalizaReports(idnp);
+        const response = await data.fetchAnalizaReports(pat_idnp.split('=')[1]);
         console.log('API Response:', response);
         if (response.status === 200) {
           setAnalizaData(response.data);
@@ -24,7 +24,7 @@ export default function Analize(){
     };
 
     fetchAnalizaData();
-  }, [idnp]);
+  }, [pat_idnp]);
 
   return(
     <SimpleGrid columns={2} spacing={10} minChildWidth="250px" height="700px">
@@ -52,9 +52,9 @@ export default function Analize(){
                   <h2><Text>Valori:</Text></h2>
                   {Object.entries(item.values).map(([key, value], index) => (
                     <UnorderedList>
-                      <ListItem>
-                        <Text key={index}>{key}: {value}</Text>
-                      </ListItem>
+                        <ListItem>
+                            <Text key={index}>{key}: {value}</Text>
+                        </ListItem>
                     </UnorderedList>
                   ))}
                 </Box>
@@ -68,6 +68,39 @@ export default function Analize(){
               Nu au fost găsite Alergii
             </Box>
         </h2>)}
+        <AccordionItem>
+            <h2>
+              <AccordionButton color="#008000"> 
+                <Box as="span" flex='1' textAlign='left' fontSize= "1.4em" color="#02825D">
+                  Adaugă Analiză
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={20}>
+              {/* Form for Additional Information */}
+              <form>
+              <Text>Denumirea:</Text>
+              {/* Input fields for Denumirea */}
+              <Input placeholder= "Denumirea..." mb={2} />
+
+              <Text>Medicul responsabil:</Text>
+              {/* Input fields for Medicul responsabil */}
+              <Input placeholder="Medicul responsabil..." mb={2} />
+
+              <Text>Data:</Text>
+              {/* Input fields for Data */}
+              <Input placeholder="Data..." mb={2} />
+
+              <Text>Descrierea:</Text>
+              {/* Input fields for Descrierea */}
+              <Input placeholder="Descrierea..." mb={2} />
+              <Button colorScheme="teal" mt="4" bgColor="#02825D" color="white">
+                Submit
+              </Button>
+              </form>
+            </AccordionPanel>
+          </AccordionItem>
       </Accordion>
     </Box>
     </SimpleGrid>

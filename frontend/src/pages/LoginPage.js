@@ -10,9 +10,10 @@ function Capitalize(str) {
 
 const LoginPage = () => {
     const { userType } = useParams();
-    const [idnp, setIdnp] = useState(''); // State for input value
+    const [idnp, setIdnp] = useState('');
     const [response, setResponse] = useState(null);
     const navigate = useNavigate();
+    const [status, setStatus] = useState('');
 
     let icon = null;
 
@@ -29,36 +30,47 @@ const LoginPage = () => {
         setIdnp(event.target.value);
     };
 
+    const handleLetters = event => {
+        const result = event.target.value.replace(/\D/g, '');
+        setStatus('');
+        setValue(result);
+      };
+
+    const [value, setValue] = useState('');
+
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        
-        try {
-            let apiResponse;
-
-            if (userType === 'pacient') {
-                apiResponse = await data.CheckPacientId(idnp);
-            } else if (userType === 'medic') {
-                apiResponse = await data.CheckMedicId(idnp);
-            }
-            
-            setResponse(apiResponse);
-            
-            if (userType === 'pacient') {
-                if (apiResponse.status === 200) { // apiResponse.startsWith('LOGARE CA PACIENT CU SUCCES! ')
-                    navigate(`/pacient/${idnp}`);
+        if (idnp.length === 13) {
+            try {
+                let apiResponse;
+    
+                if (userType === 'pacient') {
+                    apiResponse = await data.CheckPacientId(idnp);
+                } else if (userType === 'medic') {
+                    apiResponse = await data.CheckMedicId(idnp);
                 }
-            } else if (userType === 'medic') {
-                if (apiResponse.status === 200) { // apiResponse.startsWith('LOGARE CA PACIENT CU SUCCES! ')
-                    // navigate(`/medic/${idnp}`); // TODO medic page
+                
+                setResponse(apiResponse);
+                
+                if (userType === 'pacient') {
+                    if (apiResponse.status === 200) {
+                        navigate(`/pacient/${idnp}`);
+                    }
+                } else if (userType === 'medic') {
+                    if (apiResponse.status === 200) {
+                        navigate(`/medic/${idnp}`);
+                    }
                 }
+    
+            } catch (error) {
+                setStatus('invalid');
+                console.error(error);
             }
-
-            
-        } catch (error) {
-            console.error(error);
+        }
+        else {
+            setStatus('notEnough');
         }
     };
-
 
     return(
         <div>
@@ -90,12 +102,38 @@ const LoginPage = () => {
                         <Input
                         mt={0}
                         size="lg"
-                        type="email"
+                        type="search"
                         placeholder="INDP"
                         required
                         maxLength= '13'
                         onChange={handleIdnpChange}
+                        onKeyDown={(event) => {
+                            if (event.key === 'Enter') {
+                                handleFormSubmit(event);
+                            }
+                        }}
+                        value={value}
+                        onInput={handleLetters}
+                        isInvalid={idnp.length > 0 && idnp.length < 13}
+                        errorBorderColor="#ff0000"
                         />
+                        {value.length > 0 && value.length < 13 ? (
+                            <Text mt={2} color="red">
+                                IDNP trebuie să fie exact 13 numere.
+                            </Text>
+                        ) : status === 'invalid' ? (
+                            <Text mt={2} color="red">
+                                IDNP greșit.
+                            </Text>
+                        ) : status === 'notEnough' ? (
+                            <Text mt={2} color="red">
+                                IDNP trebuie să fie exact 13 numere.
+                            </Text>
+                        ) : status === 'valid' && (
+                            <Text mt={2} color="red">
+                                IDNP valid.
+                            </Text>
+                        )}
                     </GridItem>
                         <Button
                             as={GridItem}
@@ -127,12 +165,6 @@ const LoginPage = () => {
                         >
                             <Text>Logare ca {Capitalize(userType)}</Text>
                         </Button>
-                        {response && (
-                            <div>
-                                <p>API Response:</p>
-                                <pre>{JSON.stringify(response.data, null, 2)}</pre>
-                            </div>
-                        )}
                 </SimpleGrid>
             </div>
         </div>

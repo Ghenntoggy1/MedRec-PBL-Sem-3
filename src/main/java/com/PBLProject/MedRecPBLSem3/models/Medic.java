@@ -16,6 +16,8 @@ public class Medic {
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
+    private Date dateOfEmployment;
+    private String institutionName;
     private char gender;
     private int age;
     private String contact;
@@ -26,8 +28,6 @@ public class Medic {
     private int apartmentNumber;
     private String postalCode;
     private String speciality;
-//    @OneToOne(mappedBy = "medic")
-//    private AllergyReport allergyReport;
 
     private void calculateAge() {
         if (dateOfBirth != null) {
@@ -158,5 +158,21 @@ public class Medic {
 
     public void setSpeciality(String speciality) {
         this.speciality = speciality;
+    }
+
+    public Date getDateOfEmployment() {
+        return dateOfEmployment;
+    }
+
+    public void setDateOfEmployment(Date dateOfEmployment) {
+        this.dateOfEmployment = dateOfEmployment;
+    }
+
+    public String getInstitutionName() {
+        return institutionName;
+    }
+
+    public void setInstitutionName(String institutionName) {
+        this.institutionName = institutionName;
     }
 }

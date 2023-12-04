@@ -1,19 +1,17 @@
-
-
-import { Box, Text, SimpleGrid, Heading, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel } from "@chakra-ui/react";
+import { Box, Text, SimpleGrid, Heading, Accordion, AccordionItem, AccordionButton, AccordionIcon, Button, Input, AccordionPanel } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { data } from "../api/data";
 import { useEffect, useState } from "react";
 
-export default function BoliCronice(){
-  const {idnp} = useParams();
+export default function BoliCroniceDoctor(){
+  const { pat_idnp } = useParams();
 
   const [boliCroniceData, setBoliCroniceData] = useState(null);
 
   useEffect(() => {
     const fetchBoliCroniceData = async () => {
       try {
-        const response = await data.fetchBoalaCronicaReports(idnp);
+        const response = await data.fetchBoalaCronicaReports(pat_idnp.split("=")[1]);
         console.log('API Response:', response);
         if (response.status === 200) {
           setBoliCroniceData(response.data);
@@ -26,7 +24,7 @@ export default function BoliCronice(){
     };
 
     fetchBoliCroniceData();
-    }, [idnp]);
+    }, [pat_idnp]);
 
   return(
     <SimpleGrid columns={2} spacing={10} minChildWidth="250px" height="700px">
@@ -57,6 +55,39 @@ export default function BoliCronice(){
               Nu au fost găsite Boli Cronice
             </Box>
         </h2>)}
+        <AccordionItem>
+            <h2>
+              <AccordionButton color="#008000"> 
+                <Box as="span" flex='1' textAlign='left' fontSize= "1.4em" color="#02825D">
+                  Adaugă Boală Cronică
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={20}>
+              {/* Form for Additional Information */}
+              <form>
+              <Text>Denumirea:</Text>
+              {/* Input fields for Denumirea */}
+              <Input placeholder= "Denumirea..." mb={2} />
+
+              <Text>Medicul responsabil:</Text>
+              {/* Input fields for Medicul responsabil */}
+              <Input placeholder="Medicul responsabil..." mb={2} />
+
+              <Text>Data:</Text>
+              {/* Input fields for Data */}
+              <Input placeholder="Data..." mb={2} />
+
+              <Text>Descrierea:</Text>
+              {/* Input fields for Descrierea */}
+              <Input placeholder="Descrierea..." mb={2} />
+              <Button colorScheme="teal" mt="4" bgColor="#02825D" color="white">
+                Submit
+              </Button>
+              </form>
+            </AccordionPanel>
+          </AccordionItem>
       </Accordion>
       </Box>
     </SimpleGrid>

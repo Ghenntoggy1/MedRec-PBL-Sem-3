@@ -35,6 +35,39 @@ export const data = {
           return response;
     },
 
+    fetchPatientsForSearch: async () => {
+        const response = await axios.get(`${apiUrl}/getPatientsDTO`, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+        });
+        return response;
+    },
+
+    fetchPatientForSearch: async (pat_idnp) => {
+        const response = await axios.get(`${apiUrl}/getPatientDTO`, {
+            params: {
+                "idnp": pat_idnp.split("=")[1]
+            },
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+              },
+        });
+        return response;
+    },
+
+    fetchMedicInfo: async (idnp) => {
+        const response = await axios.post(`${apiUrl}/api/informatii_generale_medic`, { idnp }, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+          });
+          return response;
+    },
+
     fetchMedicalRecord: async (idnp) => {
         const response = await axios.post(`${apiUrl}/api/getMedicalRecord`, { idnp }, {
             headers: {
