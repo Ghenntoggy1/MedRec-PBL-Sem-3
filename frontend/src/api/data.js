@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const apiUrl = "http://localhost:8080";
+// const apiUrl = "http://localhost:8080";
+const apiUrl = "https://medrecfmd-backend.up.railway.app";
 
 export const data = {
     CheckPacientId: async (idnp) => {
