@@ -35,7 +35,7 @@ It's okay, you can check that it is working by accessing following link: [medrec
 
 Due to security insurance, we don't provide actual login data for MySQL database, you can check that database is populated through the backend deployment link.
 
-## How to use our App?
+# How to use our App?
 First of all, you have to login either as a Patient or Doctor. Database provides a list of valid IDNPs for the login process. We recommend the use of the following:
 Patient IDNPs:
 ```sh
