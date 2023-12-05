@@ -1,4 +1,4 @@
-# MedRecPBLSem3 API Documentation
+# MedRecPBLSem3 Project & API Documentation
 PBL Project done during Semester 3 on 2nd Year as a FAF Student at TUM.MedRec is an App that will permit patients and doctors to access their Medical record in digital format - on the Website
 
 ## Technical Framework and Tools
@@ -24,13 +24,15 @@ PBL Project done during Semester 3 on 2nd Year as a FAF Student at TUM.MedRec is
 # Access to the Deployed Application (Available for all users):
 Since we have 3 separate servers for backend, frontend and database, here are the access link to every component:
 ## Frontend Deployment - [medrecfmd.vercel.app](https://medrecfmd.vercel.app/)
+This is the link you want to use in case you want to test the application. It is responsive and is connected to Backend and Database.
 ## Backend Deployment - [medrecfmd-backend.up.railway.app](https://medrecfmd-backend.up.railway.app/)
 Initially, first page gives such error
 ``` html
 Whitelabel Error Page
 ```
 It's okay, you can check that it is working by accessing following link: [medrecfmd-backend.up.railway.app](https://medrecfmd-backend.up.railway.app/getPatients)
-## Database Deployment - due to security insurance, we don't provide actual login data for MySQL database, you can check that database is populated through the backend deployment link.
+## Database Deployment:
+Due to security insurance, we don't provide actual login data for MySQL database, you can check that database is populated through the backend deployment link.
 
 ## How to use our App?
 First of all, you have to login either as a Patient or Doctor. Database provides a list of valid IDNPs for the login process. We recommend the use of the following:
@@ -40,6 +42,7 @@ Pat_IDNP#1: 1234567890123
 Pat_IDNP#2: 3456789012345
 Pat_IDNP#3: 1234567890122
 ```
+
 Doctor IDNPs:
 ```sh
 Doc_IDNP#1: 2001234567890
