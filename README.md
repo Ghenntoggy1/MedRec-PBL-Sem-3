@@ -37,21 +37,39 @@ Due to security insurance, we don't provide actual login data for MySQL database
 
 # How to use our App?
 First of all, you will see Start page, that will offer you two choices of authentication: as Doctor or as Patient:
-![alt text](https://imgur.com/6Q9u19K)
+![Start Page](imagesREADME/startPage.png)
 Afterwards, you have to login either as a Patient or Doctor. Database provides a list of valid IDNPs for the login process. We recommend the use of the following:
-Patient IDNPs:
+
+a) Patient IDNPs:
 ```sh
 Pat_IDNP#1: 1234567890123
 Pat_IDNP#2: 3456789012345
 Pat_IDNP#3: 1234567890122
 ```
 
-Doctor IDNPs:
+b) Doctor IDNPs:
 ```sh
 Doc_IDNP#1: 2001234567890
 Doc_IDNP#2: 4001234567890
 Doc_IDNP#3: 1101234567890
 ```
+![Login Page](imagesREADME/loginPage.png)
+
+After the Login, you will be redirected to main page based on the type of user you logged in as:
+1) Patient Page:
+![Patient Main Page](imagesREADME/patientPage.png)
+2) Doctor Page:
+![Doctor Main Page](imagesREADME/docPage.png)
+
+After this step, depending on the User Role you have, you may go on such scenarios:
+1) Patient:
+   1) Choose a section to view:
+   ![PatientSelect](imagesREADME/examplePatientPage.png)
+2) Doctor:
+   1) Search for a patient:
+   ![DoctorSearchPatient](imagesREADME/docSearchPatient.png)
+   2) Choose a patient:
+   ![DoctorChosePatient](imagesREADME/docChosePatient.png)
 
 # Installation (In case you want to change something):
 
