@@ -93,21 +93,3 @@ export default function BoliCroniceDoctor(){
     </SimpleGrid>
   )
 }
-
-// const BoliCronice = () => {
-//   return (
-//     <Accordion allowToggle>
-//       {dataFromDatabase.map((item, index) => (
-//         <CustomAccordionItem
-//           key={index}
-//           denumirea={item.denumirea}
-//           mediculResponsabil={item.mediculResponsabil}
-//           data={item.data}
-//           descrierea={item.descrierea}
-//         />
-//       ))}
-//     </Accordion>
-//   );
-// };
-
-// export default Analize;
