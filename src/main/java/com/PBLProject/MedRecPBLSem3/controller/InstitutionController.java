@@ -31,28 +31,27 @@ public class InstitutionController {
     @PostMapping("/addInstitution")
     Institution addInstitution(@RequestBody Institution institution) {
         Institution existingInstitution = institutionRepository.findByInstitutionName(institution.getInstitutionName());
-        if (existingInstitution != null) {
-            List<MedicalRecord> medicalRecords = existingInstitution.getMedicalRecords();
-            MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(institution.getMedrecId());
-            if (medicalRecord != null) {
-                if (!medicalRecords.contains(medicalRecord)) {
-                    medicalRecords.add(medicalRecord);
-                    existingInstitution.setMedicalRecords(medicalRecords);
-                    return institutionRepository.save(existingInstitution);
-                }
-            }
-        } else {
+        if (existingInstitution == null) {
             List<MedicalRecord> medicalRecords = new ArrayList<>();
             MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(institution.getMedrecId());
             if (medicalRecord != null) {
+                medicalRecord.setInstitution(institution);
                 medicalRecords.add(medicalRecord);
                 institution.setMedicalRecords(medicalRecords);
-                return institutionRepository.save(institution);
+            }
+        } else {
+            List<MedicalRecord> medicalRecords = existingInstitution.getMedicalRecords();
+            MedicalRecord medicalRecord = medicalRecordRepository.findByMedrecId(institution.getMedrecId());
+            if (medicalRecord != null && !medicalRecords.contains(medicalRecord)) {
+                medicalRecord.setInstitution(existingInstitution);
+                medicalRecords.add(medicalRecord);
+                existingInstitution.setMedicalRecords(medicalRecords);
+
             }
         }
         Institution institution1 = new Institution();
         institution1.setInstitutionName(institution.getInstitutionName());
-        institution1.setMedicalRecords(new ArrayList<MedicalRecord>());
+        institution1.setMedicalRecords(new ArrayList<>());
         return institutionRepository.save(institution1);
     }
 

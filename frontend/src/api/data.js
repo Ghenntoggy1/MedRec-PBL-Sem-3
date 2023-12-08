@@ -158,6 +158,49 @@ export const data = {
         });
         return response;
     },
+
+    addPatient: async (patientData) => {
+        const response = await axios.post(`${apiUrl}/addPatient`, patientData, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+        });
+        return response;
+    },
+
+    addMedicalRecord: async (medicalRecordData) => {
+        const response = await axios.post(`${apiUrl}/addMedicalRecord`, medicalRecordData, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+        });
+        return response;
+    },
+
+    addInstitution: async (institutionData) => {
+        const response = await axios.post(`${apiUrl}/addInstitution`, institutionData, {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+        });
+        return response;
+    },
+
+    getMedicalRecordIdByPatient: async (pat_idnp) => {
+        const response = await axios.get(`${apiUrl}/getMedicalRecordIdByPatient`, {
+            params: {
+                "idnp": pat_idnp
+            },
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+        });
+        return response;
+    }
 };
 
 

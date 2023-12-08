@@ -65,22 +65,22 @@ export default function BoliCroniceDoctor(){
               </AccordionButton>
             </h2>
             <AccordionPanel pb={20}>
-              {/* Form for Additional Information */}
+              {}
               <form>
               <Text>Denumirea:</Text>
-              {/* Input fields for Denumirea */}
+              {}
               <Input placeholder= "Denumirea..." mb={2} />
 
               <Text>Medicul responsabil:</Text>
-              {/* Input fields for Medicul responsabil */}
+              {}
               <Input placeholder="Medicul responsabil..." mb={2} />
 
               <Text>Data:</Text>
-              {/* Input fields for Data */}
+              {}
               <Input placeholder="Data..." mb={2} />
 
               <Text>Descrierea:</Text>
-              {/* Input fields for Descrierea */}
+              {}
               <Input placeholder="Descrierea..." mb={2} />
               <Button colorScheme="teal" mt="4" bgColor="#02825D" color="white">
                 Submit
@@ -93,31 +93,3 @@ export default function BoliCroniceDoctor(){
     </SimpleGrid>
   )
 }
-
-
-
-// import React from 'react';
-// import CustomAccordionItem from './CustomAccordionItem'; // Adjust the import path based on your project structure
-// import { Accordion } from '@chakra-ui/react';
-
-//  const dataFromDatabase = [
-//   // ... array of objects containing denumirea, mediculResponsabil, data, and descrierea properties
-// ];
-
-// const BoliCronice = () => {
-//   return (
-//     <Accordion allowToggle>
-//       {dataFromDatabase.map((item, index) => (
-//         <CustomAccordionItem
-//           key={index}
-//           denumirea={item.denumirea}
-//           mediculResponsabil={item.mediculResponsabil}
-//           data={item.data}
-//           descrierea={item.descrierea}
-//         />
-//       ))}
-//     </Accordion>
-//   );
-// };
-
-// export default Analize;
