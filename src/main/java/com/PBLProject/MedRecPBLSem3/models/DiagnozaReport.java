@@ -20,7 +20,7 @@ public class DiagnozaReport {
     @CollectionTable(name = "prescription")
     @MapKeyColumn(name = "prescription_name")
     @Column(name = "prescription_value")
-    private Map<String, PrescribedMedicineDetails> prescribedMedicine;  // TODO table with prescription
+    private Map<String, PrescribedMedicineDetails> prescribedMedicine;  
     private String prescribedOperation;
     private Timestamp timestamp;
     @JsonIgnore
