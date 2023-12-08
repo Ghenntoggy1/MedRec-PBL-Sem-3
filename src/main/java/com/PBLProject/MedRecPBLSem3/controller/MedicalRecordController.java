@@ -83,4 +83,4 @@ public class MedicalRecordController {
             return "Necunoscută";
         }
     }
-
+}
