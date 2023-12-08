@@ -19,6 +19,7 @@ public class PatientController {
     Patient newPatient(@RequestBody Patient newPatient) {
         return patientRepository.save(newPatient);
     }
+
     @PostMapping("/addPatients")
     List<Patient> addPatients(@RequestBody List<Patient> patients) {
         return patientRepository.saveAll(patients);

@@ -27,6 +27,7 @@ import OperatiiDoctor from './pages/OperatiiDoctor';
 import PrescriptiiDoctor from './pages/PrescriptiiDoctor';
 import DiagnozeDoctor from './pages/DiagnozeDoctor';
 import VacciniDoctor from './pages/VacciniDoctor';
+import NewPatient from './pages/NewPatient';
 
 function PatientRoot({ idnp }) {
   return (
@@ -67,7 +68,7 @@ function App() {
           <Route path="/medic/:idnp" element={<DoctorRoot />}>
             <Route index element={<Doctor />} />
             <Route path="cautare" element={<SearchPage />} />
-            <Route path="adaugare" element={<SearchPage />}/>
+            <Route path="adaugare" element={<NewPatient />}/>
             <Route path=":pat_idnp" element={<Doctor />} />
             <Route path=":pat_idnp/cautare" element={<SearchPage />}/>
             <Route path=":pat_idnp/adaugare" element={<SearchPage />} />
