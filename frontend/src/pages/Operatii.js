@@ -65,29 +65,3 @@ export default function Operatii(){
     </SimpleGrid>
   )
 }
-
-// import React from 'react';
-// import CustomAccordionItem from './CustomAccordionItem'; // Adjust the import path based on your project structure
-// import { Accordion } from '@chakra-ui/react';
-
-//  const dataFromDatabase = [
-//   // ... array of objects containing denumirea, mediculResponsabil, data, and descrierea properties
-// ];
-
-// const Operatii = () => {
-//   return (
-//     <Accordion allowToggle>
-//       {dataFromDatabase.map((item, index) => (
-//         <CustomAccordionItem
-//           key={index}
-//           denumirea={item.denumirea}
-//           mediculResponsabil={item.mediculResponsabil}
-//           data={item.data}
-//           descrierea={item.descrierea}
-//         />
-//       ))}
-//     </Accordion>
-//   );
-// };
-
-// export default Analize;
