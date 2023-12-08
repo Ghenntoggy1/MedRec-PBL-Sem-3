@@ -65,20 +65,3 @@ export default function Operatii(){
     </SimpleGrid>
   )
 }
-// const Operatii = () => {
-//   return (
-//     <Accordion allowToggle>
-//       {dataFromDatabase.map((item, index) => (
-//         <CustomAccordionItem
-//           key={index}
-//           denumirea={item.denumirea}
-//           mediculResponsabil={item.mediculResponsabil}
-//           data={item.data}
-//           descrierea={item.descrierea}
-//         />
-//       ))}
-//     </Accordion>
-//   );
-// };
-
-// export default Analize;
