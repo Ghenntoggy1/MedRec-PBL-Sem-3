@@ -20,7 +20,7 @@ public class AnalizaReport {
     @Column(name = "parameter_value")
     private Map<String, String> values;
     private String description;
-    private Timestamp timestamp;  // TODO FORMAT TIMESTAMP
+    private Timestamp timestamp;  
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_medical_record_id", referencedColumnName = "medrecId")
