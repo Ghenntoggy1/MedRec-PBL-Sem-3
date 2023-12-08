@@ -16,7 +16,7 @@ public class OperatieReport {
     private String tipAnestezie;
     private String descrierePostOperatorie;
     private String complicatii;
-    private Timestamp timestamp;  // TODO FORMAT TIMESTAMP
+    private Timestamp timestamp; 
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
