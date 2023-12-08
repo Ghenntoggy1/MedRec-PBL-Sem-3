@@ -13,7 +13,7 @@ public class VaccinaReport {
     private String vaccinaName;
     private String medicName;
     private String description;
-    private Timestamp timestamp;  // TODO FORMAT TIMESTAMP
+    private Timestamp timestamp;  
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_medical_record_id", referencedColumnName = "medrecId")
