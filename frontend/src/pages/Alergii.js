@@ -60,13 +60,3 @@ export default function Alergii(){
     </SimpleGrid>
   )
 }
-
-// import React from 'react';
-// import CustomAccordionItem from './CustomAccordionItem'; // Adjust the import path based on your project structure
-// import { Accordion } from '@chakra-ui/react';
-
-//  const dataFromDatabase = [
-//   // ... array of objects containing denumirea, mediculResponsabil, data, and descrierea properties
-// ];
-
-
