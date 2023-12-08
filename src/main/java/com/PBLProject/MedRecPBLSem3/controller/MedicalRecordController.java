@@ -63,6 +63,16 @@ public class MedicalRecordController {
         }
     }
 
+    @GetMapping("/getMedicalRecordIdByPatient")
+    Long getMedicalRecordIdByPatient(@RequestParam Long idnp) {
+        Patient patient = patientRepository.findByidnp(idnp);
+        if (patient != null) {
+            return medicalRecordRepository.findByPatient(patient).getMedrecId();
+        } else {
+            return null;
+        }
+    }
+
     @PostMapping("/getInstitutionByIdnp")
     public String getInstitutionByIdnp(@RequestBody LoginForm loginForm) {
         Patient patient = patientRepository.findByidnp(loginForm.idnp);
